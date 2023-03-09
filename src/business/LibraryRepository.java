@@ -1,4 +1,4 @@
-package data.repository;
+package business;
 
 import data.model.Book;
 import data.model.CheckoutRecord;

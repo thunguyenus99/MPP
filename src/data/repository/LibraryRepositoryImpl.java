@@ -1,5 +1,6 @@
 package data.repository;
 
+import business.LibraryRepository;
 import data.model.Book;
 import data.model.CheckoutRecord;
 import data.model.LibraryMember;
