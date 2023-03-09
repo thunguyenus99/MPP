@@ -16,11 +16,11 @@ import java.util.List;
 
 public class LibraryRepositoryImpl implements LibraryRepository {
     enum StorageType {
-        BOOK, MEMBER, USER, CHECKOUT_RECORD;
+        BOOK, MEMBER, USER, CHECKOUT_RECORD
     }
 
     public static final String OUTPUT_DIR = System.getProperty("user.dir")
-            + "/src/data.repository/storage";
+            + "/src/data/repository/local";
 
     // get all data
     @Override
