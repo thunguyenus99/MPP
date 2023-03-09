@@ -87,12 +87,14 @@ public class Controller {
         dataRepository.saveMember(member);
     }
 
-    public void addBookCopy(String isbn) throws AddBookCopyException {
+    public Book addBookCopy(String isbn) throws AddBookCopyException {
         Book book = dataRepository.getBookByIsbn(isbn);
         if (book == null) {
             throw new AddBookCopyException("Book does not exist.");
         }
         book.addBookCopy();
+        dataRepository.saveBook(book);
+        return book;
     }
 
     public void addBook(Book book) {

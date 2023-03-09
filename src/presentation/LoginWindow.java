@@ -25,10 +25,10 @@ public class LoginWindow implements UIFrame, Initialization {
     LoginWindow() {
         controller = Controller.getInstance();
         validation = ValidationFactory.getValidation(this.getClass());
-        initializeController();
+        setUpListener();
     }
 
-    private void initializeController() {
+    private void setUpListener() {
         loginButton.addActionListener(e -> {
             try {
                 validation.validate(getThis());
@@ -39,8 +39,7 @@ public class LoginWindow implements UIFrame, Initialization {
                 RootFrame.getInstance().showPanel(RootFrame.HOME_FRAME);
             } catch (RuleException | LoginException ex) {
                 String message = ex.getMessage();
-                // show info to user
-
+                this.messageLabel.setText(message);
             }
         });
     }
