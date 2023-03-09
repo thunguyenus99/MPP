@@ -17,8 +17,8 @@ public class RootFrame extends JFrame {
 
     {
         uiFrameMap = new HashMap<>();
-        uiFrameMap.put(LOGIN_FRAME, new LoginFrame());
-        uiFrameMap.put(HOME_FRAME, new HomeFrame());
+        uiFrameMap.put(LOGIN_FRAME, new LoginWindow());
+        uiFrameMap.put(HOME_FRAME, new HomeWindow());
     }
 
     private RootFrame() {
