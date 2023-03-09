@@ -5,6 +5,8 @@ import data.model.User;
 
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class HomeWindow implements UIFrame, Initialization {
     private JPanel panel;
@@ -17,6 +19,7 @@ public class HomeWindow implements UIFrame, Initialization {
 
     public HomeWindow() {
         initializeUI();
+        checkoutBookButton.addActionListener(e -> RootFrame.getInstance().showPanel(RootFrame.CHECKOUT_BOOK_FRAME));
     }
 
     private void initializeUI() {

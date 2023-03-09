@@ -23,11 +23,19 @@ public class BookCopy implements Serializable {
         return available;
     }
 
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
     public int getCopyNum() {
         return copyNum;
     }
 
     public void setCheckoutRecord(CheckoutRecord checkoutRecord) {
         this.checkoutRecord = checkoutRecord;
+    }
+
+    public Book getBook() {
+        return book;
     }
 }
