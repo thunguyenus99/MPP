@@ -1,17 +1,16 @@
 package business.validation;
 
 import business.exception.RuleException;
-import presentation.LoginPanel;
-
-import javax.swing.*;
+import presentation.LoginFrame;
+import presentation.UIFrame;
 
 public class LoginValidation implements Validation {
 
     @Override
-    public void validate(JPanel component) throws RuleException {
-        LoginPanel loginPanel = (LoginPanel) component;
+    public void validate(UIFrame frame) throws RuleException {
+        LoginFrame loginFrame = (LoginFrame) frame;
         // TODO
-        String userId = loginPanel.getUserId();
-        String password = loginPanel.getPassword();
+        String userId = loginFrame.getUserId();
+        String password = loginFrame.getPassword();
     }
 }

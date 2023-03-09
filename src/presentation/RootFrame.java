@@ -9,19 +9,16 @@ public class RootFrame extends JFrame {
 
     private static RootFrame INSTANCE;
 
-    public static final String LOGIN_PANEL = "LOGIN_PANEL";
+    public static final String LOGIN_FRAME = "LOGIN_FRAME";
 
-    public static final String HOME_PANEL = "HOME_PANEL";
+    public static final String HOME_FRAME = "HOME_FRAME";
 
-    public static final String ADD_MEMBER_PANEL = "ADD_MEMBER_PANEL";
-
-    public static Map<String, JPanel> panelMap;
+    public static Map<String, UIFrame> uiFrameMap;
 
     {
-        panelMap = new HashMap<>();
-        panelMap.put(LOGIN_PANEL, new LoginPanel());
-        panelMap.put(HOME_PANEL, new HomePanel());
-//        panelMap.put(ADD_MEMBER_PANEL, new AddMemberPanel());
+        uiFrameMap = new HashMap<>();
+        uiFrameMap.put(LOGIN_FRAME, new LoginFrame());
+        uiFrameMap.put(HOME_FRAME, new HomeFrame());
     }
 
     private RootFrame() {
@@ -42,14 +39,14 @@ public class RootFrame extends JFrame {
         setLayout(new CardLayout());
         setVisible(true);
 
-        add(LOGIN_PANEL, panelMap.get(LOGIN_PANEL));
-        add(HOME_PANEL, panelMap.get(HOME_PANEL));
-        showPanel(LOGIN_PANEL);
+        add(LOGIN_FRAME, uiFrameMap.get(LOGIN_FRAME).getPanel());
+        add(HOME_FRAME, uiFrameMap.get(HOME_FRAME).getPanel());
+        showPanel(LOGIN_FRAME);
     }
 
     public void showPanel(String panelName) {
-        Initialization panel = (Initialization) panelMap.get(panelName);
-        panel.run();
+        Initialization frame = (Initialization) uiFrameMap.get(panelName);
+        frame.run();
         ((CardLayout) getContentPane().getLayout()).show(this.getContentPane(), panelName);
     }
 }

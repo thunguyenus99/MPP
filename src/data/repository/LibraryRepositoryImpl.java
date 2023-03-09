@@ -20,7 +20,7 @@ public class LibraryRepositoryImpl implements LibraryRepository {
     }
 
     public static final String OUTPUT_DIR = System.getProperty("user.dir")
-            + "/src/data.repository/storage";
+            + "/src/data/repository/local";
 
     // get all data
     @Override
