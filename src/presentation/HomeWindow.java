@@ -3,7 +3,6 @@ package presentation;
 import data.model.Role;
 import data.model.User;
 
-
 import javax.swing.*;
 
 public class HomeWindow implements UIFrame, Initialization {

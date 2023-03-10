@@ -156,6 +156,7 @@ public class Controller {
                 null
         );
         libraryMember.addCheckoutRecord(checkoutRecord);
+        bookCopy.setCheckoutRecord(checkoutRecord);
         dataRepository.saveMember(libraryMember);
         dataRepository.saveBook(book);
         return checkoutRecord;
