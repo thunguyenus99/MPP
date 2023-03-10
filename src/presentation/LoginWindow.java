@@ -31,7 +31,7 @@ public class LoginWindow implements UIFrame, Initialization {
     private void initializeController() {
         loginButton.addActionListener(e -> {
             try {
-                validation.validate(getThis());
+                validation.validate(this);
                 User user = controller.login(getUserId(), getPassword());
                 // set logged-in user
                 LoggedInUser.set(user);
@@ -51,10 +51,6 @@ public class LoginWindow implements UIFrame, Initialization {
 
     public String getPassword() {
         return String.valueOf(passwordField.getPassword());
-    }
-
-    private LoginWindow getThis() {
-        return this;
     }
 
     @Override

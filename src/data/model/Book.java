@@ -3,6 +3,7 @@ package data.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Book implements Serializable {
     private static final long serialVersionUID = 6110690276685962829L;
@@ -42,5 +43,19 @@ public class Book implements Serializable {
 
     public void addBookCopy() {
         bookCopyList.add(new BookCopy(this, this.bookCopyList.size(), true));
+    }
+
+    public Optional<BookCopy> getNextAvailableBookCopy() {
+        return bookCopyList.stream()
+                .filter(BookCopy::isAvailable)
+                .findFirst();
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public List<Author> getAuthorList() {
+        return authorList;
     }
 }
