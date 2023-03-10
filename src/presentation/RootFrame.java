@@ -14,12 +14,15 @@ public class RootFrame extends JFrame {
     public static final String HOME_FRAME = "HOME_FRAME";
     public static final String CHECKOUT_BOOK_FRAME = "CHECKOUT_BOOK_FRAME";
 
+    public static final String ADD_COPY_FRAME = "ADD_COPY_FRAME";
+
     public static Map<String, UIFrame> uiFrameMap;
 
     {
         uiFrameMap = new HashMap<>();
         uiFrameMap.put(LOGIN_FRAME, new LoginWindow());
         uiFrameMap.put(HOME_FRAME, new HomeWindow());
+        uiFrameMap.put(ADD_COPY_FRAME, new AddCopyWindow());
         uiFrameMap.put(CHECKOUT_BOOK_FRAME, new CheckoutBookWindow());
     }
 
@@ -43,6 +46,7 @@ public class RootFrame extends JFrame {
 
         add(LOGIN_FRAME, uiFrameMap.get(LOGIN_FRAME).getPanel());
         add(HOME_FRAME, uiFrameMap.get(HOME_FRAME).getPanel());
+        add(ADD_COPY_FRAME, uiFrameMap.get(ADD_COPY_FRAME).getPanel());
         add(CHECKOUT_BOOK_FRAME, uiFrameMap.get(CHECKOUT_BOOK_FRAME).getPanel());
         showPanel(LOGIN_FRAME);
     }
