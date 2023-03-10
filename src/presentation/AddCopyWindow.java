@@ -10,7 +10,7 @@ import presentation.validator.ValidatorFactory;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
-public class AddCopyWindow implements UIFrame, Initialization {
+public class AddCopyWindow implements UIFrame {
     private JPanel panel;
     private JTextField isbnTextField;
     private JButton addCopyButton;
@@ -51,7 +51,7 @@ public class AddCopyWindow implements UIFrame, Initialization {
     }
 
     @Override
-    public JPanel getPanel() {
+    public JPanel getRoot() {
         return panel;
     }
 

@@ -11,7 +11,7 @@ import presentation.validator.ValidatorFactory;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
-public class AddMemberWindow  implements UIFrame, Initialization {
+public class AddMemberWindow implements UIFrame {
     private JPanel root;
     private JTextField memberIdTxt;
     private JTextField firstNameTxt;
@@ -87,7 +87,7 @@ public class AddMemberWindow  implements UIFrame, Initialization {
     }
 
     @Override
-    public JPanel getPanel() {
+    public JPanel getRoot() {
         return root;
     }
 }

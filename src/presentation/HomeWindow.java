@@ -6,7 +6,7 @@ import data.model.User;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
-public class HomeWindow implements UIFrame, Initialization {
+public class HomeWindow implements UIFrame {
     private JPanel panel;
     private JButton checkoutBookButton;
     private JButton addMemberButton;
@@ -53,7 +53,7 @@ public class HomeWindow implements UIFrame, Initialization {
     }
 
     @Override
-    public JPanel getPanel() {
+    public JPanel getRoot() {
         return panel;
     }
 }

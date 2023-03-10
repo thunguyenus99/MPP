@@ -11,7 +11,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
-public class CheckoutBookWindow implements UIFrame, Initialization {
+public class CheckoutBookWindow implements UIFrame {
     private JPanel panel;
     private JTextField txtMemberId;
     private JTextField txtIsbn;
@@ -93,7 +93,7 @@ public class CheckoutBookWindow implements UIFrame, Initialization {
     }
 
     @Override
-    public JPanel getPanel() {
+    public JPanel getRoot() {
         return panel;
     }
 

@@ -13,7 +13,7 @@ import javax.swing.border.TitledBorder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddBookWindow implements UIFrame, Initialization {
+public class AddBookWindow implements UIFrame {
     private JPanel panel;
     private JTextField isbnTextField;
     private JTextField titleTextField;
@@ -92,7 +92,7 @@ public class AddBookWindow implements UIFrame, Initialization {
     }
 
     @Override
-    public JPanel getPanel() {
+    public JPanel getRoot() {
         return panel;
     }
 

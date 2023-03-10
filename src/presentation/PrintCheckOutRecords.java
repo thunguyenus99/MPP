@@ -11,11 +11,12 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
-public class PrintCheckOutRecords  implements UIFrame, Initialization {
+public class PrintCheckOutRecords implements UIFrame {
     private JPanel root;
     private JTextField memberIdTxt;
     private JButton printCheckOutRecordsButton;
     private JTable checkOutRecordTbl;
+
     public PrintCheckOutRecords() {
         printCheckOutRecordsButton.addActionListener(e -> {
             try {
@@ -71,7 +72,7 @@ public class PrintCheckOutRecords  implements UIFrame, Initialization {
     }
 
     @Override
-    public JPanel getPanel() {
+    public JPanel getRoot() {
         return root;
     }
 }

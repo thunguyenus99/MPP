@@ -9,7 +9,7 @@ import presentation.validator.ValidatorFactory;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
-public class AddAuthorWindow implements UIFrame, Initialization{
+public class AddAuthorWindow implements UIFrame {
     private JTextField firstNameTextField;
     private JTextField streetTextField;
     private JTextField stateTextField;
@@ -35,6 +35,7 @@ public class AddAuthorWindow implements UIFrame, Initialization{
     private final AddBookWindow addBookWindow;
 
     private final Validator validator;
+
     public AddAuthorWindow(AddBookWindow addBookWindow) {
         this.addBookWindow = addBookWindow;
         validator = ValidatorFactory.getValidator(this.getClass());
@@ -89,7 +90,7 @@ public class AddAuthorWindow implements UIFrame, Initialization{
     }
 
     @Override
-    public JPanel getPanel() {
+    public JPanel getRoot() {
         return panel;
     }
 
