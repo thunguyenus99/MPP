@@ -29,7 +29,6 @@ public class RootFrame extends JFrame {
         uiFrameMap.put(ADD_MEMBER_WINDOW, new AddMemberWindow());
         uiFrameMap.put(ADD_COPY_FRAME, new AddCopyWindow());
         uiFrameMap.put(CHECKOUT_BOOK_FRAME, new CheckoutBookWindow());
-
         uiFrameMap.put(PRINT_CHECKOUT_RECORDS_WINDOW, new PrintCheckOutRecords());
     }
 
