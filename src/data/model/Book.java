@@ -42,7 +42,7 @@ public class Book implements Serializable {
     }
 
     public void addBookCopy() {
-        bookCopyList.add(new BookCopy(this, this.bookCopyList.size(), true));
+        bookCopyList.add(new BookCopy(this, this.bookCopyList.size() + 1, true));
     }
 
     public Optional<BookCopy> getNextAvailableBookCopy() {
