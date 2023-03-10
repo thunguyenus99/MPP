@@ -65,7 +65,9 @@ public class PrintCheckOutRecordsWindow implements UIFrame {
 
     @Override
     public void run() {
-
+        memberIdTxt.setText("");
+        ((DefaultTableModel) checkOutRecordTbl.getModel()).setRowCount(0);
+        ((DefaultTableModel) checkOutRecordTbl.getModel()).setColumnCount(0);
     }
 
     @Override

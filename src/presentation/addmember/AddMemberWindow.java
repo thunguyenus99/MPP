@@ -80,7 +80,15 @@ public class AddMemberWindow implements UIFrame {
 
     @Override
     public void run() {
-
+        memberIdTxt.setText("");
+        firstNameTxt.setText("");
+        lastNameTxt.setText("");
+        streetTxt.setText("");
+        cityTxt.setText("");
+        stateTxt.setText("");
+        zipTxt.setText("");
+        numberTxt.setText("");
+        messageLabel.setText("");
     }
 
     @Override
