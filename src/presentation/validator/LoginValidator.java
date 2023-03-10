@@ -1,10 +1,9 @@
-package business.validation;
+package presentation.validator;
 
-import business.exception.RuleException;
 import presentation.LoginWindow;
 import presentation.UIFrame;
 
-public class LoginValidation implements Validation {
+public class LoginValidator implements Validator {
 
     @Override
     public void validate(UIFrame frame) throws RuleException {

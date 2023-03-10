@@ -1,11 +1,11 @@
 package presentation;
 
-import business.Controller;
+import business.LibraryController;
 import business.exception.AddBookCopyException;
-import business.exception.RuleException;
-import business.validation.Validation;
-import business.validation.ValidationFactory;
 import data.model.Book;
+import presentation.validator.RuleException;
+import presentation.validator.Validator;
+import presentation.validator.ValidatorFactory;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -17,20 +17,20 @@ public class AddCopyWindow implements UIFrame, Initialization {
     private JLabel isbnLabel;
     private JLabel messageLabel;
 
-    private Controller controller;
+    private final LibraryController controller;
 
-    private Validation validation;
+    private final Validator validator;
 
     public AddCopyWindow() {
-        controller = Controller.getInstance();
-        validation = ValidationFactory.getValidation(this.getClass());
+        controller = LibraryController.getInstance();
+        validator = ValidatorFactory.getValidator(this.getClass());
         setUpListener();
     }
 
     private void setUpListener() {
         addCopyButton.addActionListener(e -> {
             try {
-                validation.validate(this);
+                validator.validate(this);
                 Book book = controller.addBookCopy(this.isbnTextField.getText());
                 this.messageLabel.setText("Add Copy Successfully. Number of Copy: " + book.getBookCopyList().size());
             } catch (RuleException | AddBookCopyException ex) {

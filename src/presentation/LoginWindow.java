@@ -1,11 +1,11 @@
 package presentation;
 
-import business.Controller;
+import business.LibraryController;
 import business.exception.LoginException;
-import business.exception.RuleException;
-import business.validation.Validation;
-import business.validation.ValidationFactory;
 import data.model.User;
+import presentation.validator.RuleException;
+import presentation.validator.Validator;
+import presentation.validator.ValidatorFactory;
 
 import javax.swing.*;
 
@@ -18,20 +18,20 @@ public class LoginWindow implements UIFrame, Initialization {
     private JLabel messageLabel;
     private JPanel panel;
 
-    private Controller controller;
+    private final LibraryController controller;
 
-    private Validation validation;
+    private final Validator validator;
 
     LoginWindow() {
-        controller = Controller.getInstance();
-        validation = ValidationFactory.getValidation(this.getClass());
+        controller = LibraryController.getInstance();
+        validator = ValidatorFactory.getValidator(this.getClass());
         setUpListener();
     }
 
     private void setUpListener() {
         loginButton.addActionListener(e -> {
             try {
-                validation.validate(this);
+                validator.validate(this);
                 User user = controller.login(getUserId(), getPassword());
                 // set logged-in user
                 LoggedInUser.set(user);

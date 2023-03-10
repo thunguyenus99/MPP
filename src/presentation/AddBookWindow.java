@@ -1,12 +1,12 @@
 package presentation;
 
-import business.Controller;
+import business.LibraryController;
 import business.exception.AddBookException;
-import business.exception.RuleException;
-import business.validation.Validation;
-import business.validation.ValidationFactory;
 import data.model.Author;
 import data.model.Book;
+import presentation.validator.RuleException;
+import presentation.validator.Validator;
+import presentation.validator.ValidatorFactory;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -30,17 +30,17 @@ public class AddBookWindow implements UIFrame, Initialization {
     private JLabel authorsLabel;
     private JLabel messageLabel;
 
-    private Controller controller;
+    private final LibraryController controller;
 
     private final List<Author> authorList;
 
     private final AddAuthorWindow addAuthorWindow;
 
-    private Validation validation;
+    private final Validator validator;
 
     public AddBookWindow() {
-        controller = Controller.getInstance();
-        validation = ValidationFactory.getValidation(this.getClass());
+        controller = LibraryController.getInstance();
+        validator = ValidatorFactory.getValidator(this.getClass());
         authorList = new ArrayList<>();
         addAuthorWindow = new AddAuthorWindow(this);
         setUpListener();
@@ -50,7 +50,7 @@ public class AddBookWindow implements UIFrame, Initialization {
         addAuthorButton.addActionListener(e -> RootFrame.getInstance().addPanel(RootFrame.ADD_AUTHOR_WINDOW, true));
         addButton.addActionListener(e -> {
             try {
-                validation.validate(this);
+                validator.validate(this);
             } catch (RuleException ex) {
                 JOptionPane.showMessageDialog(panel, ex.getMessage());
                 return;
