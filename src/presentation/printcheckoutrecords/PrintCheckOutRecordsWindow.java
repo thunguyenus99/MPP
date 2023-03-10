@@ -1,23 +1,25 @@
-package presentation;
+package presentation.printcheckoutrecords;
 
 import business.LibraryController;
 import business.exception.GetCheckoutRecordException;
 import data.model.Book;
 import data.model.BookCopy;
 import data.model.CheckoutRecord;
+import presentation.RootFrame;
+import presentation.UIFrame;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
-public class PrintCheckOutRecords implements UIFrame {
+public class PrintCheckOutRecordsWindow implements UIFrame {
     private JPanel root;
     private JTextField memberIdTxt;
     private JButton printCheckOutRecordsButton;
     private JTable checkOutRecordTbl;
 
-    public PrintCheckOutRecords() {
+    public PrintCheckOutRecordsWindow() {
         printCheckOutRecordsButton.addActionListener(e -> {
             try {
                 List<CheckoutRecord> checkoutRecords = LibraryController.getInstance().getCheckoutRecordByMemberId(memberIdTxt.getText().trim());
@@ -55,7 +57,7 @@ public class PrintCheckOutRecords implements UIFrame {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("PrintCheckoutRecords");
-        frame.setContentPane(new PrintCheckOutRecords().root);
+        frame.setContentPane(new PrintCheckOutRecordsWindow().root);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

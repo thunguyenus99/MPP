@@ -3,6 +3,13 @@ package presentation;
 import presentation.addauthor.AddAuthorUiPlugin;
 import presentation.addbook.AddBookUiPlugin;
 import presentation.addbook.AddBookWindow;
+import presentation.addcopy.AddCopyUiPlugin;
+import presentation.addmember.AddMemberUiPlugin;
+import presentation.checkoutbook.CheckBookUiPlugin;
+import presentation.home.HomeUiPlugin;
+import presentation.login.LoginUiPlugin;
+import presentation.printcheckoutrecords.PrintCheckoutRecordsUiPlugin;
+import presentation.searchbook.SearchBookUiPlugin;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,24 +20,6 @@ import java.util.Map;
 public class RootFrame extends JFrame {
 
     private static RootFrame INSTANCE;
-
-    public static final String LOGIN_WINDOW = "LOGIN_WINDOW";
-
-    public static final String HOME_WINDOW = "HOME_WINDOW";
-
-    public static final String CHECKOUT_BOOK_WINDOW = "CHECKOUT_BOOK_WINDOW";
-
-    public static final String ADD_COPY_WINDOW = "ADD_COPY_WINDOW";
-
-    public static final String ADD_MEMBER_WINDOW = "ADD_MEMBER_WINDOW";
-
-    public static final String ADD_BOOK_WINDOW = "ADD_BOOK_WINDOW";
-
-    public static final String ADD_AUTHOR_WINDOW = "ADD_AUTHOR_WINDOW";
-
-    public static final String PRINT_CHECKOUT_RECORDS_WINDOW = "PRINT_CHECKOUT_RECORDS_WINDOW";
-
-    public static final String SEARCH_BOOK_WINDOW = "SEARCH_BOOK_WINDOW";
 
     private final Map<String, UIFrame> uiFrameMap = new HashMap<>();
 
@@ -54,31 +43,18 @@ public class RootFrame extends JFrame {
         setLayout(new CardLayout());
         setVisible(true);
 
+        plugUi(new LoginUiPlugin());
+        plugUi(new HomeUiPlugin());
+        plugUi(new AddMemberUiPlugin());
+        plugUi(new AddCopyUiPlugin());
+        plugUi(new CheckBookUiPlugin());
+        plugUi(new PrintCheckoutRecordsUiPlugin());
+        plugUi(new SearchBookUiPlugin());
         UiPlugin addBookUiPlugin = new AddBookUiPlugin();
         plugUi(addBookUiPlugin);
         plugUi(new AddAuthorUiPlugin((AddBookWindow) addBookUiPlugin.getUiFrame()));
-
         frameStack = new LinkedList<>();
-
-        uiFrameMap.put(LOGIN_WINDOW, new LoginWindow());
-        uiFrameMap.put(HOME_WINDOW, new HomeWindow());
-        uiFrameMap.put(ADD_MEMBER_WINDOW, new AddMemberWindow());
-        uiFrameMap.put(ADD_COPY_WINDOW, new AddCopyWindow());
-        uiFrameMap.put(CHECKOUT_BOOK_WINDOW, new CheckoutBookWindow());
-        uiFrameMap.put(ADD_AUTHOR_WINDOW, ((AddBookWindow) uiFrameMap.get(ADD_BOOK_WINDOW)).getAddAuthorWindow());
-        uiFrameMap.put(PRINT_CHECKOUT_RECORDS_WINDOW, new PrintCheckOutRecords());
-        uiFrameMap.put(SEARCH_BOOK_WINDOW, new SearchBookWindow());
-
-        add(LOGIN_WINDOW, uiFrameMap.get(LOGIN_WINDOW).getRoot());
-        add(HOME_WINDOW, uiFrameMap.get(HOME_WINDOW).getRoot());
-        add(ADD_MEMBER_WINDOW, uiFrameMap.get(ADD_MEMBER_WINDOW).getRoot());
-        add(ADD_COPY_WINDOW, uiFrameMap.get(ADD_COPY_WINDOW).getRoot());
-        add(CHECKOUT_BOOK_WINDOW, uiFrameMap.get(CHECKOUT_BOOK_WINDOW).getRoot());
-        add(ADD_BOOK_WINDOW, uiFrameMap.get(ADD_BOOK_WINDOW).getRoot());
-        add(ADD_AUTHOR_WINDOW, uiFrameMap.get(ADD_AUTHOR_WINDOW).getRoot());
-        add(PRINT_CHECKOUT_RECORDS_WINDOW, uiFrameMap.get(PRINT_CHECKOUT_RECORDS_WINDOW).getRoot());
-        add(SEARCH_BOOK_WINDOW, uiFrameMap.get(SEARCH_BOOK_WINDOW).getRoot());
-        addPanel(LOGIN_WINDOW, true);
+        addPanel(LoginUiPlugin.NAME, true);
     }
 
     public void addPanel(String panelName, boolean runInit) {
@@ -97,7 +73,7 @@ public class RootFrame extends JFrame {
     public String getNavigationLink() {
         StringBuilder link = new StringBuilder();
         for (int i = frameStack.size() - 1; i >= 0; i--) {
-            if (frameStack.get(i).equals(LOGIN_WINDOW)) {
+            if (frameStack.get(i).equals(LoginUiPlugin.NAME)) {
                 continue;
             }
 

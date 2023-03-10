@@ -7,6 +7,7 @@ import data.model.Book;
 import presentation.BackButton;
 import presentation.RootFrame;
 import presentation.UIFrame;
+import presentation.addauthor.AddAuthorUiPlugin;
 import presentation.addauthor.AddAuthorWindow;
 import presentation.validator.RuleException;
 import presentation.validator.Validator;
@@ -51,7 +52,7 @@ public class AddBookWindow implements UIFrame {
     }
 
     private void setUpListener() {
-        addAuthorButton.addActionListener(e -> RootFrame.getInstance().addPanel(RootFrame.ADD_AUTHOR_WINDOW, true));
+        addAuthorButton.addActionListener(e -> RootFrame.getInstance().addPanel(AddAuthorUiPlugin.NAME, true));
         addButton.addActionListener(e -> {
             try {
                 validator.validate(this);

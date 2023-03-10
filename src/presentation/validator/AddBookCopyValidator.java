@@ -1,7 +1,7 @@
 package presentation.validator;
 
-import presentation.AddCopyWindow;
 import presentation.UIFrame;
+import presentation.addcopy.AddCopyWindow;
 
 public class AddBookCopyValidator implements Validator {
     @Override

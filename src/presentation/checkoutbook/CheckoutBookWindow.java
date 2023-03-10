@@ -1,10 +1,12 @@
-package presentation;
+package presentation.checkoutbook;
 
 import business.LibraryController;
 import business.exception.CheckoutException;
 import data.model.Book;
 import data.model.BookCopy;
 import data.model.CheckoutRecord;
+import presentation.RootFrame;
+import presentation.UIFrame;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;

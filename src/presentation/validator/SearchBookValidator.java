@@ -1,7 +1,7 @@
 package presentation.validator;
 
-import presentation.SearchBookWindow;
 import presentation.UIFrame;
+import presentation.searchbook.SearchBookWindow;
 
 public class SearchBookValidator implements Validator {
     @Override
