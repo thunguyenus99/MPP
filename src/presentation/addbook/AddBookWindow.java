@@ -1,9 +1,13 @@
-package presentation;
+package presentation.addbook;
 
 import business.LibraryController;
 import business.exception.AddBookException;
 import data.model.Author;
 import data.model.Book;
+import presentation.BackButton;
+import presentation.RootFrame;
+import presentation.UIFrame;
+import presentation.addauthor.AddAuthorWindow;
 import presentation.validator.RuleException;
 import presentation.validator.Validator;
 import presentation.validator.ValidatorFactory;
@@ -13,7 +17,7 @@ import javax.swing.border.TitledBorder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddBookWindow implements UIFrame, Initialization {
+public class AddBookWindow implements UIFrame {
     private JPanel panel;
     private JTextField isbnTextField;
     private JTextField titleTextField;
@@ -92,7 +96,7 @@ public class AddBookWindow implements UIFrame, Initialization {
     }
 
     @Override
-    public JPanel getPanel() {
+    public JPanel getRoot() {
         return panel;
     }
 

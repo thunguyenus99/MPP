@@ -1,8 +1,8 @@
 package presentation.validator;
 
 import data.model.Address;
-import presentation.AddAuthorWindow;
 import presentation.UIFrame;
+import presentation.addauthor.AddAuthorWindow;
 
 public class AddAuthorValidator implements Validator {
     @Override

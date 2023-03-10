@@ -1,7 +1,11 @@
-package presentation;
+package presentation.addauthor;
 
 import data.model.Address;
 import data.model.Author;
+import presentation.BackButton;
+import presentation.RootFrame;
+import presentation.UIFrame;
+import presentation.addbook.AddBookWindow;
 import presentation.validator.RuleException;
 import presentation.validator.Validator;
 import presentation.validator.ValidatorFactory;
@@ -9,7 +13,7 @@ import presentation.validator.ValidatorFactory;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
-public class AddAuthorWindow implements UIFrame, Initialization{
+public class AddAuthorWindow implements UIFrame {
     private JTextField firstNameTextField;
     private JTextField streetTextField;
     private JTextField stateTextField;
@@ -35,6 +39,7 @@ public class AddAuthorWindow implements UIFrame, Initialization{
     private final AddBookWindow addBookWindow;
 
     private final Validator validator;
+
     public AddAuthorWindow(AddBookWindow addBookWindow) {
         this.addBookWindow = addBookWindow;
         validator = ValidatorFactory.getValidator(this.getClass());
@@ -89,7 +94,7 @@ public class AddAuthorWindow implements UIFrame, Initialization{
     }
 
     @Override
-    public JPanel getPanel() {
+    public JPanel getRoot() {
         return panel;
     }
 

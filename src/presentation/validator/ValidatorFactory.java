@@ -1,6 +1,8 @@
 package presentation.validator;
 
 import presentation.*;
+import presentation.addauthor.AddAuthorWindow;
+import presentation.addbook.AddBookWindow;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,5 +1,9 @@
 package presentation;
 
+import presentation.addauthor.AddAuthorUiPlugin;
+import presentation.addbook.AddBookUiPlugin;
+import presentation.addbook.AddBookWindow;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
@@ -28,7 +32,7 @@ public class RootFrame extends JFrame {
 
     public static final String SEARCH_BOOK_WINDOW = "SEARCH_BOOK_WINDOW";
 
-    private Map<String, UIFrame> uiFrameMap;
+    private final Map<String, UIFrame> uiFrameMap = new HashMap<>();
 
     private LinkedList<String> frameStack;
 
@@ -50,28 +54,30 @@ public class RootFrame extends JFrame {
         setLayout(new CardLayout());
         setVisible(true);
 
+        UiPlugin addBookUiPlugin = new AddBookUiPlugin();
+        plugUi(addBookUiPlugin);
+        plugUi(new AddAuthorUiPlugin((AddBookWindow) addBookUiPlugin.getUiFrame()));
+
         frameStack = new LinkedList<>();
 
-        uiFrameMap = new HashMap<>();
         uiFrameMap.put(LOGIN_WINDOW, new LoginWindow());
         uiFrameMap.put(HOME_WINDOW, new HomeWindow());
         uiFrameMap.put(ADD_MEMBER_WINDOW, new AddMemberWindow());
         uiFrameMap.put(ADD_COPY_WINDOW, new AddCopyWindow());
         uiFrameMap.put(CHECKOUT_BOOK_WINDOW, new CheckoutBookWindow());
-        uiFrameMap.put(ADD_BOOK_WINDOW, new AddBookWindow());
-        uiFrameMap.put(ADD_AUTHOR_WINDOW, ((AddBookWindow)uiFrameMap.get(ADD_BOOK_WINDOW)).getAddAuthorWindow());
+        uiFrameMap.put(ADD_AUTHOR_WINDOW, ((AddBookWindow) uiFrameMap.get(ADD_BOOK_WINDOW)).getAddAuthorWindow());
         uiFrameMap.put(PRINT_CHECKOUT_RECORDS_WINDOW, new PrintCheckOutRecords());
         uiFrameMap.put(SEARCH_BOOK_WINDOW, new SearchBookWindow());
 
-        add(LOGIN_WINDOW, uiFrameMap.get(LOGIN_WINDOW).getPanel());
-        add(HOME_WINDOW, uiFrameMap.get(HOME_WINDOW).getPanel());
-        add(ADD_MEMBER_WINDOW, uiFrameMap.get(ADD_MEMBER_WINDOW).getPanel());
-        add(ADD_COPY_WINDOW, uiFrameMap.get(ADD_COPY_WINDOW).getPanel());
-        add(CHECKOUT_BOOK_WINDOW, uiFrameMap.get(CHECKOUT_BOOK_WINDOW).getPanel());
-        add(ADD_BOOK_WINDOW, uiFrameMap.get(ADD_BOOK_WINDOW).getPanel());
-        add(ADD_AUTHOR_WINDOW, uiFrameMap.get(ADD_AUTHOR_WINDOW).getPanel());
-        add(PRINT_CHECKOUT_RECORDS_WINDOW, uiFrameMap.get(PRINT_CHECKOUT_RECORDS_WINDOW).getPanel());
-        add(SEARCH_BOOK_WINDOW, uiFrameMap.get(SEARCH_BOOK_WINDOW).getPanel());
+        add(LOGIN_WINDOW, uiFrameMap.get(LOGIN_WINDOW).getRoot());
+        add(HOME_WINDOW, uiFrameMap.get(HOME_WINDOW).getRoot());
+        add(ADD_MEMBER_WINDOW, uiFrameMap.get(ADD_MEMBER_WINDOW).getRoot());
+        add(ADD_COPY_WINDOW, uiFrameMap.get(ADD_COPY_WINDOW).getRoot());
+        add(CHECKOUT_BOOK_WINDOW, uiFrameMap.get(CHECKOUT_BOOK_WINDOW).getRoot());
+        add(ADD_BOOK_WINDOW, uiFrameMap.get(ADD_BOOK_WINDOW).getRoot());
+        add(ADD_AUTHOR_WINDOW, uiFrameMap.get(ADD_AUTHOR_WINDOW).getRoot());
+        add(PRINT_CHECKOUT_RECORDS_WINDOW, uiFrameMap.get(PRINT_CHECKOUT_RECORDS_WINDOW).getRoot());
+        add(SEARCH_BOOK_WINDOW, uiFrameMap.get(SEARCH_BOOK_WINDOW).getRoot());
         addPanel(LOGIN_WINDOW, true);
     }
 
@@ -110,11 +116,16 @@ public class RootFrame extends JFrame {
     }
 
     private void showPanel(String panelName, boolean runInit) {
-        Initialization frame = (Initialization) uiFrameMap.get(panelName);
+        UIFrame frame = uiFrameMap.get(panelName);
         if (runInit) {
             frame.run();
         }
         frame.updateNavigationLink();
         ((CardLayout) getContentPane().getLayout()).show(this.getContentPane(), panelName);
+    }
+
+    public void plugUi(UiPlugin uiPlugin) {
+        uiFrameMap.put(uiPlugin.getName(), uiPlugin.getUiFrame());
+        add(uiPlugin.getName(), uiPlugin.getUiFrame().getRoot());
     }
 }

@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.util.List;
 
-public class SearchBookWindow implements UIFrame, Initialization {
+public class SearchBookWindow implements UIFrame {
     private JTextField txtIsbn;
     private JButton btnCheck;
     private JTable tblMember;
@@ -96,7 +96,7 @@ public class SearchBookWindow implements UIFrame, Initialization {
     }
 
     @Override
-    public JPanel getPanel() {
+    public JPanel getRoot() {
         return root;
     }
 }

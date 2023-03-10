@@ -9,7 +9,7 @@ import presentation.validator.ValidatorFactory;
 
 import javax.swing.*;
 
-public class LoginWindow implements UIFrame, Initialization {
+public class LoginWindow implements UIFrame {
     private JTextField userIdTextField;
     private JPasswordField passwordField;
     private JButton loginButton;
@@ -63,7 +63,7 @@ public class LoginWindow implements UIFrame, Initialization {
     }
 
     @Override
-    public JPanel getPanel() {
+    public JPanel getRoot() {
         return panel;
     }
 
