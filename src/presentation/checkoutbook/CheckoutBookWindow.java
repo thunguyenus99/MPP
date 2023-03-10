@@ -28,22 +28,26 @@ public class CheckoutBookWindow implements UIFrame {
             try {
                 ValidatorFactory.getValidator(this.getClass()).validate(this);
                 CheckoutRecord checkoutRecord = LibraryController.getInstance().checkoutBook(txtMemberId.getText().trim(), txtIsbn.getText().trim());
-                BookCopy bookCopy = checkoutRecord.getBookCopy();
-                Book book = checkoutRecord.getBookCopy().getBook();
-                String[] columnNames = {
-                        "Book Title",
-                        "Book Copy Number",
-                        "Checkout Date",
-                        "Due Date"
-                };
-                String[][] rowValues = {
-                        {book.getTitle(), String.valueOf(bookCopy.getCopyNum()), checkoutRecord.getCheckoutDate().toString(), checkoutRecord.getDueDate().toString()},
-                };
-                tblCheckoutRecord.setModel(new DefaultTableModel(rowValues, columnNames));
+                updateUi(checkoutRecord);
             } catch (RuleException | CheckoutException ex) {
                 JOptionPane.showMessageDialog(panel, ex.getMessage());
             }
         });
+    }
+
+    private void updateUi(CheckoutRecord checkoutRecord) {
+        BookCopy bookCopy = checkoutRecord.getBookCopy();
+        Book book = checkoutRecord.getBookCopy().getBook();
+        String[] columnNames = {
+                "Book Title",
+                "Book Copy Number",
+                "Checkout Date",
+                "Due Date"
+        };
+        String[][] rowValues = {
+                {book.getTitle(), String.valueOf(bookCopy.getCopyNum()), checkoutRecord.getCheckoutDate().toString(), checkoutRecord.getDueDate().toString()},
+        };
+        tblCheckoutRecord.setModel(new DefaultTableModel(rowValues, columnNames));
     }
 
     public static void main(String[] args) {

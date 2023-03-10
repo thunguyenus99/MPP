@@ -7,6 +7,8 @@ import data.model.BookCopy;
 import data.model.CheckoutRecord;
 import presentation.RootFrame;
 import presentation.UIFrame;
+import presentation.validator.RuleException;
+import presentation.validator.ValidatorFactory;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -15,44 +17,49 @@ import java.util.List;
 
 public class PrintCheckOutRecordsWindow implements UIFrame {
     private JPanel root;
-    private JTextField memberIdTxt;
-    private JButton printCheckOutRecordsButton;
+    private JTextField txtMemberId;
+    private JButton btnPrintCheckOutRecords;
     private JTable checkOutRecordTbl;
+    private JLabel lblMemberId;
 
     public PrintCheckOutRecordsWindow() {
-        printCheckOutRecordsButton.addActionListener(e -> {
+        btnPrintCheckOutRecords.addActionListener(e -> {
             try {
-                List<CheckoutRecord> checkoutRecords = LibraryController.getInstance().getCheckoutRecordByMemberId(memberIdTxt.getText().trim());
-
-                String[] columnNames = {
-                        "Book ISBN",
-                        "Book Title",
-                        "Book Copy Number",
-                        "Due Date",
-                        "Checkout Date",
-                        "Checkin Date",
-                        "Fine"
-                };
-
-                String[][] rowValues = new String[checkoutRecords.size()][7];
-                for (int i = 0; i < checkoutRecords.size(); i++) {
-                    CheckoutRecord record = checkoutRecords.get(i);
-                    BookCopy bookCopy = record.getBookCopy();
-                    Book book = bookCopy.getBook();
-                    rowValues[i][0] = book.getIsbn();
-                    rowValues[i][1] = book.getTitle();
-                    rowValues[i][2] = String.valueOf(bookCopy.getCopyNum());
-                    rowValues[i][3]= record.getDueDate().toString();
-                    rowValues[i][4] = record.getCheckoutDate().toString();
-                    rowValues[i][5] = record.getCheckinDate() == null ?"":record.getCheckinDate().toString();
-                    rowValues[i][6] = String.valueOf(record.getFine());
-
-                }
-                checkOutRecordTbl.setModel(new DefaultTableModel(rowValues, columnNames));
-            } catch (GetCheckoutRecordException ex) {
+                ValidatorFactory.getValidator(getClass()).validate(this);
+                List<CheckoutRecord> checkoutRecords = LibraryController.getInstance().getCheckoutRecords(txtMemberId.getText().trim());
+                updateUi(checkoutRecords);
+            } catch (RuleException | GetCheckoutRecordException ex) {
                 JOptionPane.showMessageDialog(root, ex.getMessage());
             }
         });
+    }
+
+    private void updateUi(List<CheckoutRecord> checkoutRecords) {
+        String[] columnNames = {
+                "Book ISBN",
+                "Book Title",
+                "Book Copy Number",
+                "Due Date",
+                "Checkout Date",
+                "Checkin Date",
+                "Fine"
+        };
+
+        String[][] rowValues = new String[checkoutRecords.size()][7];
+        for (int i = 0; i < checkoutRecords.size(); i++) {
+            CheckoutRecord record = checkoutRecords.get(i);
+            BookCopy bookCopy = record.getBookCopy();
+            Book book = bookCopy.getBook();
+            rowValues[i][0] = book.getIsbn();
+            rowValues[i][1] = book.getTitle();
+            rowValues[i][2] = String.valueOf(bookCopy.getCopyNum());
+            rowValues[i][3] = record.getDueDate().toString();
+            rowValues[i][4] = record.getCheckoutDate().toString();
+            rowValues[i][5] = record.getCheckinDate() == null ? "" : record.getCheckinDate().toString();
+            rowValues[i][6] = String.valueOf(record.getFine());
+
+        }
+        checkOutRecordTbl.setModel(new DefaultTableModel(rowValues, columnNames));
     }
 
     public static void main(String[] args) {
@@ -65,7 +72,7 @@ public class PrintCheckOutRecordsWindow implements UIFrame {
 
     @Override
     public void run() {
-        memberIdTxt.setText("");
+        txtMemberId.setText("");
         ((DefaultTableModel) checkOutRecordTbl.getModel()).setRowCount(0);
         ((DefaultTableModel) checkOutRecordTbl.getModel()).setColumnCount(0);
     }
@@ -78,5 +85,9 @@ public class PrintCheckOutRecordsWindow implements UIFrame {
     @Override
     public JPanel getRoot() {
         return root;
+    }
+
+    public JTextField getTxtMemberId() {
+        return txtMemberId;
     }
 }
