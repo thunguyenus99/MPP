@@ -5,6 +5,8 @@ import data.model.User;
 
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class HomeWindow implements UIFrame, Initialization {
     private JPanel panel;
@@ -32,6 +34,7 @@ public class HomeWindow implements UIFrame, Initialization {
     void setUpListener() {
         addCopyButton.addActionListener(e -> RootFrame.getInstance().showPanel(RootFrame.ADD_COPY_FRAME));
         checkoutBookButton.addActionListener(e -> RootFrame.getInstance().showPanel(RootFrame.CHECKOUT_BOOK_FRAME));
+        addMemberButton.addActionListener(e -> RootFrame.getInstance().showPanel(RootFrame.ADD_MEMBER_WINDOW));
     }
 
     public void authorizeFunction() {

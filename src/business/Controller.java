@@ -1,16 +1,11 @@
 package business;
 
-import business.exception.AddBookCopyException;
-import business.exception.CheckoutException;
-import business.exception.GetCheckoutRecordException;
-import business.exception.LoginException;
+import business.exception.*;
 import data.model.*;
 import data.repository.LibraryRepositoryImpl;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public class Controller {
 
@@ -83,8 +78,29 @@ public class Controller {
         return checkoutRecord;
     }
 
-    public void addMember(LibraryMember member) {
+    public void addMember(LibraryMember member) throws AddMemberException{
+        if (!isMemberIdUnique(member.getMemberId().trim())){
+            throw new AddMemberException("Member does not exist.");
+        }
         dataRepository.saveMember(member);
+    }
+
+    private  boolean isMemberIdUnique(String memberId)
+    {
+        List<LibraryMember> allMembers = getAllLibraryMembers();
+        //boolean isUnique  = allMembers.stream().filter(p -> p.getMemberId() == memberId).findAny() == null;
+        return allMembers.stream().filter(p -> p.getMemberId() == memberId).findAny() == null;
+    }
+
+    public List<LibraryMember> getAllLibraryMembers()
+    {
+        List<LibraryMember> retVal = new ArrayList<>();
+        HashMap<String, LibraryMember> test = dataRepository.readMembers();
+
+        for(Map.Entry<String, LibraryMember> entry: test.entrySet()) {
+            retVal.add(entry.getValue());
+        }
+        return retVal;
     }
 
     public Book addBookCopy(String isbn) throws AddBookCopyException {

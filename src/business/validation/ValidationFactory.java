@@ -1,5 +1,6 @@
 package business.validation;
 
+import presentation.AddMemberWindow;
 import presentation.AddCopyWindow;
 import presentation.LoginWindow;
 import presentation.UIFrame;
@@ -13,6 +14,7 @@ public class ValidationFactory {
     static {
         map = new HashMap<>();
         map.put(LoginWindow.class, new LoginValidation());
+        map.put(AddMemberWindow.class, new AddMemberValidation());
         map.put(AddCopyWindow.class, new AddBookCopyValidation());
     }
 
