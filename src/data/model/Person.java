@@ -27,4 +27,12 @@ public abstract class Person implements Serializable {
     public String getLastName() {
         return lastName;
     }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
 }

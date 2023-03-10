@@ -38,4 +38,8 @@ public class BookCopy implements Serializable {
     public Book getBook() {
         return book;
     }
+
+    public CheckoutRecord getCheckoutRecord() {
+        return checkoutRecord;
+    }
 }

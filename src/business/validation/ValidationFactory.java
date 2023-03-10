@@ -15,6 +15,7 @@ public class ValidationFactory {
         map.put(AddCopyWindow.class, new AddBookCopyValidation());
         map.put(AddAuthorWindow.class, new AddAuthorValidation());
         map.put(AddBookWindow.class, new AddBookValidation());
+        map.put(SearchBookWindow.class, new SearchBookValidation());
     }
 
     public static Validation getValidation(Class<? extends UIFrame> component) {

@@ -24,6 +24,10 @@ public class RootFrame extends JFrame {
 
     public static final String ADD_AUTHOR_WINDOW = "ADD_AUTHOR_WINDOW";
 
+    public static final String PRINT_CHECKOUT_RECORDS_WINDOW = "PRINT_CHECKOUT_RECORDS_WINDOW";
+
+    public static final String SEARCH_BOOK_WINDOW = "SEARCH_BOOK_WINDOW";
+
     private Map<String, UIFrame> uiFrameMap;
 
     private LinkedList<String> frameStack;
@@ -56,6 +60,8 @@ public class RootFrame extends JFrame {
         uiFrameMap.put(CHECKOUT_BOOK_WINDOW, new CheckoutBookWindow());
         uiFrameMap.put(ADD_BOOK_WINDOW, new AddBookWindow());
         uiFrameMap.put(ADD_AUTHOR_WINDOW, ((AddBookWindow)uiFrameMap.get(ADD_BOOK_WINDOW)).getAddAuthorWindow());
+        uiFrameMap.put(PRINT_CHECKOUT_RECORDS_WINDOW, new PrintCheckOutRecords());
+        uiFrameMap.put(SEARCH_BOOK_WINDOW, new SearchBookWindow());
 
         add(LOGIN_WINDOW, uiFrameMap.get(LOGIN_WINDOW).getPanel());
         add(HOME_WINDOW, uiFrameMap.get(HOME_WINDOW).getPanel());
@@ -64,6 +70,8 @@ public class RootFrame extends JFrame {
         add(CHECKOUT_BOOK_WINDOW, uiFrameMap.get(CHECKOUT_BOOK_WINDOW).getPanel());
         add(ADD_BOOK_WINDOW, uiFrameMap.get(ADD_BOOK_WINDOW).getPanel());
         add(ADD_AUTHOR_WINDOW, uiFrameMap.get(ADD_AUTHOR_WINDOW).getPanel());
+        add(PRINT_CHECKOUT_RECORDS_WINDOW, uiFrameMap.get(PRINT_CHECKOUT_RECORDS_WINDOW).getPanel());
+        add(SEARCH_BOOK_WINDOW, uiFrameMap.get(SEARCH_BOOK_WINDOW).getPanel());
         addPanel(LOGIN_WINDOW, true);
     }
 

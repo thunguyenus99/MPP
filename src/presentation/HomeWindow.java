@@ -3,7 +3,6 @@ package presentation;
 import data.model.Role;
 import data.model.User;
 
-
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
@@ -11,7 +10,7 @@ public class HomeWindow implements UIFrame, Initialization {
     private JPanel panel;
     private JButton checkoutBookButton;
     private JButton addMemberButton;
-    private JButton searchMemberButton;
+    private JButton printCheckOutRecordsButton;
     private JButton addCopyButton;
     private JButton searchBookButton;
     private JButton addBookButton;
@@ -25,6 +24,8 @@ public class HomeWindow implements UIFrame, Initialization {
         checkoutBookButton.addActionListener(e -> RootFrame.getInstance().addPanel(RootFrame.CHECKOUT_BOOK_WINDOW, true));
         addMemberButton.addActionListener(e -> RootFrame.getInstance().addPanel(RootFrame.ADD_MEMBER_WINDOW, true));
         addBookButton.addActionListener(e -> RootFrame.getInstance().addPanel(RootFrame.ADD_BOOK_WINDOW, true));
+        printCheckOutRecordsButton.addActionListener(e -> RootFrame.getInstance().addPanel(RootFrame.PRINT_CHECKOUT_RECORDS_WINDOW, true));
+        searchBookButton.addActionListener(e -> RootFrame.getInstance().addPanel(RootFrame.SEARCH_BOOK_WINDOW, true));
     }
 
     public void authorizeFunction() {
@@ -33,7 +34,7 @@ public class HomeWindow implements UIFrame, Initialization {
             boolean isLibrarian = user.getAuthorizations().contains(Role.LIBRARIAN);
             boolean isAdmin = user.getAuthorizations().contains(Role.ADMIN);
             checkoutBookButton.setVisible(isLibrarian);
-            searchMemberButton.setVisible(isLibrarian);
+            printCheckOutRecordsButton.setVisible(isLibrarian);
             searchBookButton.setVisible(isLibrarian);
             addBookButton.setVisible(isAdmin);
             addMemberButton.setVisible(isAdmin);
