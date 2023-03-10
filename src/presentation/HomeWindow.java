@@ -5,14 +5,12 @@ import data.model.User;
 
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class HomeWindow implements UIFrame, Initialization {
     private JPanel panel;
     private JButton checkoutBookButton;
     private JButton addMemberButton;
-    private JButton searchMemberButton;
+    private JButton printCheckOutRecordsButton;
     private JButton addCopyButton;
     private JButton searchBookButton;
     private JButton addBookButton;
@@ -24,7 +22,7 @@ public class HomeWindow implements UIFrame, Initialization {
 
     private void setUpUi() {
         checkoutBookButton.setVisible(false);
-        searchMemberButton.setVisible(false);
+        printCheckOutRecordsButton.setVisible(false);
         searchBookButton.setVisible(false);
         addMemberButton.setVisible(false);
         addCopyButton.setVisible(false);
@@ -35,6 +33,7 @@ public class HomeWindow implements UIFrame, Initialization {
         addCopyButton.addActionListener(e -> RootFrame.getInstance().showPanel(RootFrame.ADD_COPY_FRAME));
         checkoutBookButton.addActionListener(e -> RootFrame.getInstance().showPanel(RootFrame.CHECKOUT_BOOK_FRAME));
         addMemberButton.addActionListener(e -> RootFrame.getInstance().showPanel(RootFrame.ADD_MEMBER_WINDOW));
+        printCheckOutRecordsButton.addActionListener(e -> RootFrame.getInstance().showPanel(RootFrame.PRINT_CHECKOUT_RECORDS_WINDOW));
     }
 
     public void authorizeFunction() {
@@ -42,7 +41,7 @@ public class HomeWindow implements UIFrame, Initialization {
         if (user != null) {
             if (user.getAuthorizations().contains(Role.LIBRARIAN)) {
                 checkoutBookButton.setVisible(true);
-                searchMemberButton.setVisible(true);
+                printCheckOutRecordsButton.setVisible(true);
                 searchBookButton.setVisible(true);
             }
             if (user.getAuthorizations().contains(Role.ADMIN)) {

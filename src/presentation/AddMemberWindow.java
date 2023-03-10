@@ -48,7 +48,6 @@ public class AddMemberWindow  implements UIFrame, Initialization {
                     );
                     validation.validate(this);
                     controller.addMember(newMember);
-                    List<LibraryMember> test = controller.getAllLibraryMembers();
             } catch (RuleException | AddMemberException ex) {
                 String message = ex.getMessage();
                 JOptionPane.showMessageDialog(root, message);
