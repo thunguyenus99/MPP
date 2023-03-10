@@ -13,7 +13,6 @@ import presentation.validator.ValidatorFactory;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 
 public class CheckoutBookWindow implements UIFrame {
     private JPanel panel;
@@ -71,5 +70,13 @@ public class CheckoutBookWindow implements UIFrame {
     @Override
     public void updateNavigationLink() {
         panel.setBorder(new TitledBorder(RootFrame.getInstance().getNavigationLink()));
+    }
+
+    public JTextField getTxtMemberId() {
+        return txtMemberId;
+    }
+
+    public JTextField getTxtIsbn() {
+        return txtIsbn;
     }
 }
