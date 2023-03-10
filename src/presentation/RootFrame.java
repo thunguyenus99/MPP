@@ -18,6 +18,8 @@ public class RootFrame extends JFrame {
 
     public static final String ADD_MEMBER_WINDOW = "ADD_MEMBER_WINDOW";
 
+    public static  final String PRINT_CHECKOUT_RECORDS_WINDOW = "PRINT_CHECKOUT_RECORDS_WINDOW";
+
     public static Map<String, UIFrame> uiFrameMap;
 
     {
@@ -27,6 +29,8 @@ public class RootFrame extends JFrame {
         uiFrameMap.put(ADD_MEMBER_WINDOW, new AddMemberWindow());
         uiFrameMap.put(ADD_COPY_FRAME, new AddCopyWindow());
         uiFrameMap.put(CHECKOUT_BOOK_FRAME, new CheckoutBookWindow());
+
+        uiFrameMap.put(PRINT_CHECKOUT_RECORDS_WINDOW, new PrintCheckOutRecords());
     }
 
     private RootFrame() {
@@ -52,6 +56,7 @@ public class RootFrame extends JFrame {
         add(ADD_MEMBER_WINDOW, uiFrameMap.get(ADD_MEMBER_WINDOW).getPanel());
         add(ADD_COPY_FRAME, uiFrameMap.get(ADD_COPY_FRAME).getPanel());
         add(CHECKOUT_BOOK_FRAME, uiFrameMap.get(CHECKOUT_BOOK_FRAME).getPanel());
+        add(PRINT_CHECKOUT_RECORDS_WINDOW, uiFrameMap.get(PRINT_CHECKOUT_RECORDS_WINDOW).getPanel());
         showPanel(LOGIN_FRAME);
     }
 
