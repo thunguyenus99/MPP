@@ -39,7 +39,7 @@ public class RootFrame extends JFrame {
 
     private void initialize() {
         setTitle("AURORA GROUP");
-        setSize(700, 600);
+        setSize(500, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new CardLayout());
         setVisible(true);

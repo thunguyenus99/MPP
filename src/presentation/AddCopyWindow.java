@@ -13,7 +13,6 @@ public class AddCopyWindow implements UIFrame, Initialization {
     private JPanel panel;
     private JTextField isbnTextField;
     private JButton addCopyButton;
-    private JLabel searchBookLabel;
     private JLabel isbnLabel;
     private JLabel messageLabel;
 
