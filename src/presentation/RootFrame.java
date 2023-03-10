@@ -41,6 +41,7 @@ public class RootFrame extends JFrame {
         setSize(600, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new CardLayout());
+        UiUtils.centerFrameOnDesktop(this);
         setVisible(true);
 
         plugUi(new LoginUiPlugin());
