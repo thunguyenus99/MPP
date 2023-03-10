@@ -7,6 +7,7 @@ import data.model.BookCopy;
 import data.model.CheckoutRecord;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
@@ -62,6 +63,11 @@ public class PrintCheckOutRecords  implements UIFrame, Initialization {
     @Override
     public void run() {
 
+    }
+
+    @Override
+    public void updateNavigationLink() {
+        root.setBorder(new TitledBorder(RootFrame.getInstance().getNavigationLink()));
     }
 
     @Override

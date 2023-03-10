@@ -79,28 +79,11 @@ public class Controller {
     }
 
     public void addMember(LibraryMember member) throws AddMemberException{
-        if (!isMemberIdUnique(member.getMemberId().trim())){
-            throw new AddMemberException("Member does not exist.");
+        Map<String, LibraryMember> allMembers = dataRepository.readMembers();
+        if (allMembers.containsKey(member.getMemberId())){
+            throw new AddMemberException("Member already exists.");
         }
         dataRepository.saveMember(member);
-    }
-
-    private  boolean isMemberIdUnique(String memberId)
-    {
-        List<LibraryMember> allMembers = getAllLibraryMembers();
-        //boolean isUnique  = allMembers.stream().filter(p -> p.getMemberId() == memberId).findAny() == null;
-        return allMembers.stream().filter(p -> p.getMemberId() == memberId).findAny() == null;
-    }
-
-    public List<LibraryMember> getAllLibraryMembers()
-    {
-        List<LibraryMember> retVal = new ArrayList<>();
-        HashMap<String, LibraryMember> test = dataRepository.readMembers();
-
-        for(Map.Entry<String, LibraryMember> entry: test.entrySet()) {
-            retVal.add(entry.getValue());
-        }
-        return retVal;
     }
 
     public Book addBookCopy(String isbn) throws AddBookCopyException {
@@ -113,7 +96,11 @@ public class Controller {
         return book;
     }
 
-    public void addBook(Book book) {
+    public void addBook(Book book) throws AddBookException {
+        Map<String, Book> bookMap = dataRepository.readBooks();
+        if (bookMap.containsKey(book.getIsbn())) {
+            throw new AddBookException("Book already exists.");
+        }
         dataRepository.saveBook(book);
     }
 

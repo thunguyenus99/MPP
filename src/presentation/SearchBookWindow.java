@@ -9,6 +9,7 @@ import data.model.CheckoutRecord;
 import data.model.LibraryMember;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.util.List;
@@ -87,6 +88,11 @@ public class SearchBookWindow implements UIFrame, Initialization {
     @Override
     public void run() {
 
+    }
+
+    @Override
+    public void updateNavigationLink() {
+        root.setBorder(new TitledBorder(RootFrame.getInstance().getNavigationLink()));
     }
 
     @Override
