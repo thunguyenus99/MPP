@@ -19,4 +19,12 @@ public abstract class Person implements Serializable {
         this.address = address;
         this.telephone = telephone;
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
 }

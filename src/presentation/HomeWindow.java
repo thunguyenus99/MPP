@@ -5,8 +5,7 @@ import data.model.User;
 
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.border.TitledBorder;
 
 public class HomeWindow implements UIFrame, Initialization {
     private JPanel panel;
@@ -18,44 +17,38 @@ public class HomeWindow implements UIFrame, Initialization {
     private JButton addBookButton;
 
     public HomeWindow() {
-        setUpUi();
         setUpListener();
     }
 
-    private void setUpUi() {
-        checkoutBookButton.setVisible(false);
-        searchMemberButton.setVisible(false);
-        searchBookButton.setVisible(false);
-        addMemberButton.setVisible(false);
-        addCopyButton.setVisible(false);
-        addBookButton.setVisible(false);
-    }
-
     void setUpListener() {
-        addCopyButton.addActionListener(e -> RootFrame.getInstance().showPanel(RootFrame.ADD_COPY_FRAME));
-        checkoutBookButton.addActionListener(e -> RootFrame.getInstance().showPanel(RootFrame.CHECKOUT_BOOK_FRAME));
-        addMemberButton.addActionListener(e -> RootFrame.getInstance().showPanel(RootFrame.ADD_MEMBER_WINDOW));
+        addCopyButton.addActionListener(e -> RootFrame.getInstance().addPanel(RootFrame.ADD_COPY_WINDOW, true));
+        checkoutBookButton.addActionListener(e -> RootFrame.getInstance().addPanel(RootFrame.CHECKOUT_BOOK_WINDOW, true));
+        addMemberButton.addActionListener(e -> RootFrame.getInstance().addPanel(RootFrame.ADD_MEMBER_WINDOW, true));
+        addBookButton.addActionListener(e -> RootFrame.getInstance().addPanel(RootFrame.ADD_BOOK_WINDOW, true));
     }
 
     public void authorizeFunction() {
         User user = LoggedInUser.get();
         if (user != null) {
-            if (user.getAuthorizations().contains(Role.LIBRARIAN)) {
-                checkoutBookButton.setVisible(true);
-                searchMemberButton.setVisible(true);
-                searchBookButton.setVisible(true);
-            }
-            if (user.getAuthorizations().contains(Role.ADMIN)) {
-                addBookButton.setVisible(true);
-                addMemberButton.setVisible(true);
-                addCopyButton.setVisible(true);
-            }
+            boolean isLibrarian = user.getAuthorizations().contains(Role.LIBRARIAN);
+            boolean isAdmin = user.getAuthorizations().contains(Role.ADMIN);
+            checkoutBookButton.setVisible(isLibrarian);
+            searchMemberButton.setVisible(isLibrarian);
+            searchBookButton.setVisible(isLibrarian);
+            addBookButton.setVisible(isAdmin);
+            addMemberButton.setVisible(isAdmin);
+            addCopyButton.setVisible(isAdmin);
         }
     }
 
     @Override
     public void run() {
         authorizeFunction();
+    }
+
+    @Override
+    public void updateNavigationLink() {
+        panel.setBorder(new TitledBorder(RootFrame.getInstance().getNavigationLink()));
     }
 
     @Override

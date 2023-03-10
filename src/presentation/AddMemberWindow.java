@@ -24,8 +24,7 @@ public class AddMemberWindow  implements UIFrame, Initialization {
     private JTextField zipTxt;
     private JTextField numberTxt;
     private JButton submitBtn;
-    private JButton cancelBtn;
-    private JLabel errorMsglbl;
+    private JLabel messageLabel;
 
     private Controller controller;
     private Validation validation;
@@ -34,24 +33,30 @@ public class AddMemberWindow  implements UIFrame, Initialization {
         validation = ValidationFactory.getValidation(this.getClass());
 
         submitBtn.addActionListener(e -> {
-            try {
-                    Address newAddress = new Address(this.streetTxt.getText().trim(),
-                            this.cityTxt.getText().trim(),
-                            this.stateTxt.getText().trim(),
-                            this.zipTxt.getText().trim());
+            Address newAddress = new Address(this.streetTxt.getText().trim(),
+                    this.cityTxt.getText().trim(),
+                    this.stateTxt.getText().trim(),
+                    this.zipTxt.getText().trim());
 
-                    LibraryMember newMember = new LibraryMember(this.memberIdTxt.getText().trim(),
-                            this.firstNameTxt.getText().trim(),
-                            this.lastNameTxt.getText().trim(),
-                            newAddress,
-                            this.numberTxt.getText().trim()
-                    );
-                    validation.validate(this);
-                    controller.addMember(newMember);
-                    List<LibraryMember> test = controller.getAllLibraryMembers();
-            } catch (RuleException | AddMemberException ex) {
+            LibraryMember newMember = new LibraryMember(this.memberIdTxt.getText().trim(),
+                    this.firstNameTxt.getText().trim(),
+                    this.lastNameTxt.getText().trim(),
+                    newAddress,
+                    this.numberTxt.getText().trim()
+            );
+            try {
+                validation.validate(this);
+            } catch (RuleException ex) {
                 String message = ex.getMessage();
                 JOptionPane.showMessageDialog(root, message);
+                return;
+            }
+            try {
+                controller.addMember(newMember);
+                messageLabel.setText("Add Member successfully: " + firstNameTxt.getText() + " " + lastNameTxt.getText());
+            } catch (AddMemberException ex) {
+                JOptionPane.showMessageDialog(root, "Member exists and get updated.");
+                messageLabel.setText("Update Member successfully: " + firstNameTxt.getText() + " " + lastNameTxt.getText());
             }
         });
     }
@@ -75,6 +80,11 @@ public class AddMemberWindow  implements UIFrame, Initialization {
     @Override
     public void run() {
 
+    }
+
+    @Override
+    public void updateNavigationLink() {
+        root.setBorder(new TitledBorder(RootFrame.getInstance().getNavigationLink()));
     }
 
     @Override

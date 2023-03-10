@@ -8,6 +8,7 @@ import business.validation.ValidationFactory;
 import data.model.Book;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 
 public class AddCopyWindow implements UIFrame, Initialization {
     private JPanel panel;
@@ -40,7 +41,13 @@ public class AddCopyWindow implements UIFrame, Initialization {
 
     @Override
     public void run() {
+        isbnTextField.setText("");
+        messageLabel.setText("");
+    }
 
+    @Override
+    public void updateNavigationLink() {
+        panel.setBorder(new TitledBorder(RootFrame.getInstance().getNavigationLink()));
     }
 
     @Override

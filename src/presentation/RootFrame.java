@@ -3,31 +3,30 @@ package presentation;
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 public class RootFrame extends JFrame {
 
     private static RootFrame INSTANCE;
 
-    public static final String LOGIN_FRAME = "LOGIN_FRAME";
+    public static final String LOGIN_WINDOW = "LOGIN_WINDOW";
 
-    public static final String HOME_FRAME = "HOME_FRAME";
-    public static final String CHECKOUT_BOOK_FRAME = "CHECKOUT_BOOK_FRAME";
+    public static final String HOME_WINDOW = "HOME_WINDOW";
 
-    public static final String ADD_COPY_FRAME = "ADD_COPY_FRAME";
+    public static final String CHECKOUT_BOOK_WINDOW = "CHECKOUT_BOOK_WINDOW";
+
+    public static final String ADD_COPY_WINDOW = "ADD_COPY_WINDOW";
 
     public static final String ADD_MEMBER_WINDOW = "ADD_MEMBER_WINDOW";
 
-    public static Map<String, UIFrame> uiFrameMap;
+    public static final String ADD_BOOK_WINDOW = "ADD_BOOK_WINDOW";
 
-    {
-        uiFrameMap = new HashMap<>();
-        uiFrameMap.put(LOGIN_FRAME, new LoginWindow());
-        uiFrameMap.put(HOME_FRAME, new HomeWindow());
-        uiFrameMap.put(ADD_MEMBER_WINDOW, new AddMemberWindow());
-        uiFrameMap.put(ADD_COPY_FRAME, new AddCopyWindow());
-        uiFrameMap.put(CHECKOUT_BOOK_FRAME, new CheckoutBookWindow());
-    }
+    public static final String ADD_AUTHOR_WINDOW = "ADD_AUTHOR_WINDOW";
+
+    private Map<String, UIFrame> uiFrameMap;
+
+    private LinkedList<String> frameStack;
 
     private RootFrame() {
         initialize();
@@ -42,22 +41,72 @@ public class RootFrame extends JFrame {
 
     private void initialize() {
         setTitle("AURORA GROUP");
-        setSize(500, 400);
+        setSize(600, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new CardLayout());
         setVisible(true);
 
-        add(LOGIN_FRAME, uiFrameMap.get(LOGIN_FRAME).getPanel());
-        add(HOME_FRAME, uiFrameMap.get(HOME_FRAME).getPanel());
+        frameStack = new LinkedList<>();
+
+        uiFrameMap = new HashMap<>();
+        uiFrameMap.put(LOGIN_WINDOW, new LoginWindow());
+        uiFrameMap.put(HOME_WINDOW, new HomeWindow());
+        uiFrameMap.put(ADD_MEMBER_WINDOW, new AddMemberWindow());
+        uiFrameMap.put(ADD_COPY_WINDOW, new AddCopyWindow());
+        uiFrameMap.put(CHECKOUT_BOOK_WINDOW, new CheckoutBookWindow());
+        uiFrameMap.put(ADD_BOOK_WINDOW, new AddBookWindow());
+        uiFrameMap.put(ADD_AUTHOR_WINDOW, ((AddBookWindow)uiFrameMap.get(ADD_BOOK_WINDOW)).getAddAuthorWindow());
+
+        add(LOGIN_WINDOW, uiFrameMap.get(LOGIN_WINDOW).getPanel());
+        add(HOME_WINDOW, uiFrameMap.get(HOME_WINDOW).getPanel());
         add(ADD_MEMBER_WINDOW, uiFrameMap.get(ADD_MEMBER_WINDOW).getPanel());
-        add(ADD_COPY_FRAME, uiFrameMap.get(ADD_COPY_FRAME).getPanel());
-        add(CHECKOUT_BOOK_FRAME, uiFrameMap.get(CHECKOUT_BOOK_FRAME).getPanel());
-        showPanel(LOGIN_FRAME);
+        add(ADD_COPY_WINDOW, uiFrameMap.get(ADD_COPY_WINDOW).getPanel());
+        add(CHECKOUT_BOOK_WINDOW, uiFrameMap.get(CHECKOUT_BOOK_WINDOW).getPanel());
+        add(ADD_BOOK_WINDOW, uiFrameMap.get(ADD_BOOK_WINDOW).getPanel());
+        add(ADD_AUTHOR_WINDOW, uiFrameMap.get(ADD_AUTHOR_WINDOW).getPanel());
+        addPanel(LOGIN_WINDOW, true);
     }
 
-    public void showPanel(String panelName) {
+    public void addPanel(String panelName, boolean runInit) {
+        frameStack.push(panelName);
+        showPanel(panelName, runInit);
+    }
+
+    public void removePanel(boolean runInit) {
+        if (frameStack.size() <= 1) {
+            throw new RuntimeException();
+        }
+        frameStack.pop();
+        showPanel(frameStack.peek(), runInit);
+    }
+
+    public String getNavigationLink() {
+        StringBuilder link = new StringBuilder();
+        for (int i = frameStack.size() - 1; i >= 0; i--) {
+            if (frameStack.get(i).equals(LOGIN_WINDOW)) {
+                continue;
+            }
+
+            StringBuilder panelName = new StringBuilder();
+            String[] split = frameStack.get(i).split("_");
+            for (String str : split) {
+                if (str.equals("WINDOW")) {
+                    continue;
+                }
+                panelName.append(str).append(" ");
+            }
+
+            link.append(panelName.substring(0, panelName.length() - 1)).append(" -> ");
+        }
+        return link.substring(0, link.length() - 4);
+    }
+
+    private void showPanel(String panelName, boolean runInit) {
         Initialization frame = (Initialization) uiFrameMap.get(panelName);
-        frame.run();
+        if (runInit) {
+            frame.run();
+        }
+        frame.updateNavigationLink();
         ((CardLayout) getContentPane().getLayout()).show(this.getContentPane(), panelName);
     }
 }

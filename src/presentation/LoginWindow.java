@@ -36,7 +36,7 @@ public class LoginWindow implements UIFrame, Initialization {
                 // set logged-in user
                 LoggedInUser.set(user);
                 // navigate to another page
-                RootFrame.getInstance().showPanel(RootFrame.HOME_FRAME);
+                RootFrame.getInstance().addPanel(RootFrame.HOME_WINDOW, true);
             } catch (RuleException | LoginException ex) {
                 JOptionPane.showMessageDialog(panel, ex.getMessage());
             }
@@ -53,6 +53,12 @@ public class LoginWindow implements UIFrame, Initialization {
 
     @Override
     public void run() {
+        userIdTextField.setText("");
+        passwordField.setText("");
+    }
+
+    @Override
+    public void updateNavigationLink() {
 
     }
 

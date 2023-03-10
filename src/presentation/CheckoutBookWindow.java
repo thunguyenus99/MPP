@@ -101,4 +101,9 @@ public class CheckoutBookWindow implements UIFrame, Initialization {
     public void run() {
 
     }
+
+    @Override
+    public void updateNavigationLink() {
+        panel.setBorder(new TitledBorder(RootFrame.getInstance().getNavigationLink()));
+    }
 }

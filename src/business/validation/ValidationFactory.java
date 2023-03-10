@@ -1,9 +1,6 @@
 package business.validation;
 
-import presentation.AddMemberWindow;
-import presentation.AddCopyWindow;
-import presentation.LoginWindow;
-import presentation.UIFrame;
+import presentation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +13,8 @@ public class ValidationFactory {
         map.put(LoginWindow.class, new LoginValidation());
         map.put(AddMemberWindow.class, new AddMemberValidation());
         map.put(AddCopyWindow.class, new AddBookCopyValidation());
+        map.put(AddAuthorWindow.class, new AddAuthorValidation());
+        map.put(AddBookWindow.class, new AddBookValidation());
     }
 
     public static Validation getValidation(Class<? extends UIFrame> component) {
