@@ -7,6 +7,8 @@ import data.model.BookCopy;
 import data.model.CheckoutRecord;
 import presentation.RootFrame;
 import presentation.UIFrame;
+import presentation.validator.RuleException;
+import presentation.validator.ValidatorFactory;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -25,6 +27,7 @@ public class CheckoutBookWindow implements UIFrame {
     public CheckoutBookWindow() {
         btnCheckout.addActionListener(e -> {
             try {
+                ValidatorFactory.getValidator(this.getClass()).validate(this);
                 CheckoutRecord checkoutRecord = LibraryController.getInstance().checkoutBook(txtMemberId.getText().trim(), txtIsbn.getText().trim());
                 BookCopy bookCopy = checkoutRecord.getBookCopy();
                 Book book = checkoutRecord.getBookCopy().getBook();
@@ -38,7 +41,7 @@ public class CheckoutBookWindow implements UIFrame {
                         {book.getTitle(), String.valueOf(bookCopy.getCopyNum()), checkoutRecord.getCheckoutDate().toString(), checkoutRecord.getDueDate().toString()},
                 };
                 tblCheckoutRecord.setModel(new DefaultTableModel(rowValues, columnNames));
-            } catch (CheckoutException ex) {
+            } catch (RuleException | CheckoutException ex) {
                 JOptionPane.showMessageDialog(panel, ex.getMessage());
             }
         });

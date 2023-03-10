@@ -5,6 +5,7 @@ import presentation.addauthor.AddAuthorWindow;
 import presentation.addbook.AddBookWindow;
 import presentation.addcopy.AddCopyWindow;
 import presentation.addmember.AddMemberWindow;
+import presentation.checkoutbook.CheckoutBookWindow;
 import presentation.login.LoginWindow;
 import presentation.searchbook.SearchBookWindow;
 
@@ -22,6 +23,7 @@ public class ValidatorFactory {
         map.put(AddAuthorWindow.class, new AddAuthorValidator());
         map.put(AddBookWindow.class, new AddBookValidator());
         map.put(SearchBookWindow.class, new SearchBookValidator());
+        map.put(CheckoutBookWindow.class, new CheckoutBookValidator());
     }
 
     public static Validator getValidator(Class<? extends UIFrame> component) {
