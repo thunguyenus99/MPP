@@ -1,10 +1,10 @@
 package business;
 
-import data.model.*;
 import business.exception.AddBookCopyException;
 import business.exception.CheckoutException;
 import business.exception.GetCheckoutRecordException;
 import business.exception.LoginException;
+import data.model.*;
 import data.repository.LibraryRepositoryImpl;
 
 import java.time.LocalDate;
@@ -41,7 +41,7 @@ public class Controller {
 
     public CheckoutRecord checkoutRecord(String memberId, String isbn) throws CheckoutException {
         LibraryMember member = dataRepository.getMemberById(memberId);
-        if (member == null ){
+        if (member == null) {
             throw new CheckoutException("Member does not exist.");
         }
 
@@ -60,7 +60,7 @@ public class Controller {
 
         LocalDate checkoutDate = LocalDate.now();
         LocalDate dueDate = checkoutDate.plusDays(book.getMaxCheckoutLength());
-        CheckoutRecord checkoutRecord =  new CheckoutRecord(
+        CheckoutRecord checkoutRecord = new CheckoutRecord(
                 UUID.randomUUID().toString(),
                 bookCopy,
                 member,
@@ -103,7 +103,7 @@ public class Controller {
 
     public List<CheckoutRecord> getCheckoutRecordByMemberId(String memberId) throws GetCheckoutRecordException {
         LibraryMember member = dataRepository.getMemberById(memberId);
-        if (member == null ){
+        if (member == null) {
             throw new GetCheckoutRecordException("Member does not exist.");
         }
         return member.getCheckoutRecordList();
@@ -111,5 +111,37 @@ public class Controller {
 
     public Book getBookByIsbn(String isbn) {
         return dataRepository.getBookByIsbn(isbn);
+    }
+
+    public CheckoutRecord checkoutBook(String memberId, String isbn) throws CheckoutException {
+        LibraryMember libraryMember = dataRepository.getMemberById(memberId);
+        if (libraryMember == null) {
+            throw new CheckoutException("Library member not found!");
+        }
+        Book book = dataRepository.getBookByIsbn(isbn);
+        if (book == null) {
+            throw new CheckoutException("Book not found!");
+        }
+        Optional<BookCopy> bookCopyOptional = book.getNextAvailableBookCopy();
+        if (bookCopyOptional.isEmpty()) {
+            throw new CheckoutException("Book copy not available!");
+        }
+        BookCopy bookCopy = bookCopyOptional.get();
+        bookCopy.setAvailable(false);
+        LocalDate today = LocalDate.now();
+        CheckoutRecord checkoutRecord = new CheckoutRecord(
+                UUID.randomUUID().toString(),
+                bookCopy,
+                libraryMember,
+                today,
+                today.plusDays(book.getMaxCheckoutLength()),
+                null,
+                0,
+                null
+        );
+        libraryMember.addCheckoutRecord(checkoutRecord);
+        dataRepository.saveMember(libraryMember);
+        dataRepository.saveBook(book);
+        return checkoutRecord;
     }
 }

@@ -34,4 +34,32 @@ public class CheckoutRecord implements Serializable {
     public String getRecordId() {
         return recordId;
     }
+
+    public BookCopy getBookCopy() {
+        return bookCopy;
+    }
+
+    public LibraryMember getLibraryMember() {
+        return libraryMember;
+    }
+
+    public LocalDate getCheckoutDate() {
+        return checkoutDate;
+    }
+
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public LocalDate getCheckinDate() {
+        return checkinDate;
+    }
+
+    public double getFine() {
+        return fine;
+    }
+
+    public LocalDate getPaidFineDate() {
+        return paidFineDate;
+    }
 }

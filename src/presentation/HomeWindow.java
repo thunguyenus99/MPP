@@ -31,6 +31,7 @@ public class HomeWindow implements UIFrame, Initialization {
 
     void setUpListener() {
         addCopyButton.addActionListener(e -> RootFrame.getInstance().showPanel(RootFrame.ADD_COPY_FRAME));
+        checkoutBookButton.addActionListener(e -> RootFrame.getInstance().showPanel(RootFrame.CHECKOUT_BOOK_FRAME));
     }
 
     public void authorizeFunction() {
