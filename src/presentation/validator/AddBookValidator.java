@@ -1,7 +1,7 @@
 package presentation.validator;
 
-import presentation.AddBookWindow;
 import presentation.UIFrame;
+import presentation.addbook.AddBookWindow;
 
 public class AddBookValidator implements Validator {
     @Override

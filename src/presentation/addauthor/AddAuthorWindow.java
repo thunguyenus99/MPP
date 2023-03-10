@@ -1,7 +1,11 @@
-package presentation;
+package presentation.addauthor;
 
 import data.model.Address;
 import data.model.Author;
+import presentation.BackButton;
+import presentation.RootFrame;
+import presentation.UIFrame;
+import presentation.addbook.AddBookWindow;
 import presentation.validator.RuleException;
 import presentation.validator.Validator;
 import presentation.validator.ValidatorFactory;

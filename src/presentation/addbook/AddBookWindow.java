@@ -1,9 +1,13 @@
-package presentation;
+package presentation.addbook;
 
 import business.LibraryController;
 import business.exception.AddBookException;
 import data.model.Author;
 import data.model.Book;
+import presentation.BackButton;
+import presentation.RootFrame;
+import presentation.UIFrame;
+import presentation.addauthor.AddAuthorWindow;
 import presentation.validator.RuleException;
 import presentation.validator.Validator;
 import presentation.validator.ValidatorFactory;

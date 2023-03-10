@@ -2,6 +2,7 @@ package presentation;
 
 import data.model.Role;
 import data.model.User;
+import presentation.addbook.AddBookUiPlugin;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -23,7 +24,7 @@ public class HomeWindow implements UIFrame {
         addCopyButton.addActionListener(e -> RootFrame.getInstance().addPanel(RootFrame.ADD_COPY_WINDOW, true));
         checkoutBookButton.addActionListener(e -> RootFrame.getInstance().addPanel(RootFrame.CHECKOUT_BOOK_WINDOW, true));
         addMemberButton.addActionListener(e -> RootFrame.getInstance().addPanel(RootFrame.ADD_MEMBER_WINDOW, true));
-        addBookButton.addActionListener(e -> RootFrame.getInstance().addPanel(RootFrame.ADD_BOOK_WINDOW, true));
+        addBookButton.addActionListener(e -> RootFrame.getInstance().addPanel(AddBookUiPlugin.ADD_BOOK_WINDOW, true));
         printCheckOutRecordsButton.addActionListener(e -> RootFrame.getInstance().addPanel(RootFrame.PRINT_CHECKOUT_RECORDS_WINDOW, true));
         searchBookButton.addActionListener(e -> RootFrame.getInstance().addPanel(RootFrame.SEARCH_BOOK_WINDOW, true));
     }
