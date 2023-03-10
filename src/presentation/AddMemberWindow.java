@@ -1,17 +1,15 @@
 package presentation;
 
-import business.Controller;
+import business.LibraryController;
 import business.exception.AddMemberException;
-import business.exception.RuleException;
-import business.validation.Validation;
-import business.validation.ValidationFactory;
 import data.model.Address;
 import data.model.LibraryMember;
+import presentation.validator.RuleException;
+import presentation.validator.Validator;
+import presentation.validator.ValidatorFactory;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-import java.awt.*;
-import java.util.List;
 
 public class AddMemberWindow  implements UIFrame, Initialization {
     private JPanel root;
@@ -26,11 +24,12 @@ public class AddMemberWindow  implements UIFrame, Initialization {
     private JButton submitBtn;
     private JLabel messageLabel;
 
-    private Controller controller;
-    private Validation validation;
+    private final LibraryController controller;
+    private final Validator validator;
+
     public AddMemberWindow() {
-        controller = Controller.getInstance();
-        validation = ValidationFactory.getValidation(this.getClass());
+        controller = LibraryController.getInstance();
+        validator = ValidatorFactory.getValidator(this.getClass());
 
         submitBtn.addActionListener(e -> {
             Address newAddress = new Address(this.streetTxt.getText().trim(),
@@ -45,7 +44,7 @@ public class AddMemberWindow  implements UIFrame, Initialization {
                     this.numberTxt.getText().trim()
             );
             try {
-                validation.validate(this);
+                validator.validate(this);
             } catch (RuleException ex) {
                 String message = ex.getMessage();
                 JOptionPane.showMessageDialog(root, message);

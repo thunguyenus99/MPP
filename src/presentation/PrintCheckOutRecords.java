@@ -1,6 +1,6 @@
 package presentation;
 
-import business.Controller;
+import business.LibraryController;
 import business.exception.GetCheckoutRecordException;
 import data.model.Book;
 import data.model.BookCopy;
@@ -19,9 +19,9 @@ public class PrintCheckOutRecords  implements UIFrame, Initialization {
     public PrintCheckOutRecords() {
         printCheckOutRecordsButton.addActionListener(e -> {
             try {
-                List<CheckoutRecord> checkoutRecords = Controller.getInstance().getCheckoutRecordByMemberId(memberIdTxt.getText().trim());
+                List<CheckoutRecord> checkoutRecords = LibraryController.getInstance().getCheckoutRecordByMemberId(memberIdTxt.getText().trim());
 
-                String columnNames[] = {
+                String[] columnNames = {
                         "Book ISBN",
                         "Book Title",
                         "Book Copy Number",

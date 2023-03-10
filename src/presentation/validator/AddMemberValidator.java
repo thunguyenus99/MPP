@@ -1,19 +1,17 @@
-package business.validation;
+package presentation.validator;
 
-import business.exception.RuleException;
 import presentation.AddMemberWindow;
 import presentation.UIFrame;
 
-public class AddMemberValidation implements Validation {
+public class AddMemberValidator implements Validator {
 
     @Override
     public void validate(UIFrame frame) throws RuleException {
         AddMemberWindow addMemberWindow = (AddMemberWindow) frame;
         // TODO
 
-        if(addMemberWindow.getMemberIdTxt().getText() == null || addMemberWindow.getMemberIdTxt().getText().trim().isEmpty())
-        {
-            throw  new RuleException("Member Id cannot be empty");
+        if (addMemberWindow.getMemberIdTxt().getText() == null || addMemberWindow.getMemberIdTxt().getText().trim().isEmpty()) {
+            throw new RuleException("Member Id cannot be empty");
         }
         if(!isNumeric(addMemberWindow.getMemberIdTxt().getText()))
         {

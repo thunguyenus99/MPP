@@ -1,12 +1,12 @@
 package presentation;
 
-import business.Controller;
-import business.exception.RuleException;
-import business.validation.ValidationFactory;
+import business.LibraryController;
 import data.model.Book;
 import data.model.BookCopy;
 import data.model.CheckoutRecord;
 import data.model.LibraryMember;
+import presentation.validator.RuleException;
+import presentation.validator.ValidatorFactory;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -36,13 +36,13 @@ public class SearchBookWindow implements UIFrame, Initialization {
 
     private void onCheckClick(ActionEvent e) {
         try {
-            ValidationFactory.getValidation(getClass()).validate(this);
+            ValidatorFactory.getValidator(getClass()).validate(this);
         } catch (RuleException ex) {
             JOptionPane.showMessageDialog(root, ex.getMessage());
             return;
         }
         String isbn = txtIsbn.getText().trim();
-        Book book = Controller.getInstance().getBookByIsbn(isbn);
+        Book book = LibraryController.getInstance().getBookByIsbn(isbn);
         if (book == null) {
             JOptionPane.showMessageDialog(root, "Book not found!");
             return;

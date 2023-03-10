@@ -1,11 +1,10 @@
-package business.validation;
+package presentation.validator;
 
-import business.exception.RuleException;
 import data.model.Address;
 import presentation.AddAuthorWindow;
 import presentation.UIFrame;
 
-public class AddAuthorValidation implements Validation {
+public class AddAuthorValidator implements Validator {
     @Override
     public void validate(UIFrame frame) throws RuleException {
         AddAuthorWindow addAuthorWindow = (AddAuthorWindow) frame;

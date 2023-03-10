@@ -1,10 +1,9 @@
-package business.validation;
+package presentation.validator;
 
-import business.exception.RuleException;
 import presentation.SearchBookWindow;
 import presentation.UIFrame;
 
-public class SearchBookValidation implements Validation {
+public class SearchBookValidator implements Validator {
     @Override
     public void validate(UIFrame frame) throws RuleException {
         SearchBookWindow window = (SearchBookWindow) frame;

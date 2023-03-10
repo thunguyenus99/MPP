@@ -1,6 +1,6 @@
 package presentation;
 
-import business.Controller;
+import business.LibraryController;
 import business.exception.CheckoutException;
 import data.model.Book;
 import data.model.BookCopy;
@@ -23,16 +23,16 @@ public class CheckoutBookWindow implements UIFrame, Initialization {
     public CheckoutBookWindow() {
         btnCheckout.addActionListener(e -> {
             try {
-                CheckoutRecord checkoutRecord = Controller.getInstance().checkoutBook(txtMemberId.getText().trim(), txtIsbn.getText().trim());
+                CheckoutRecord checkoutRecord = LibraryController.getInstance().checkoutBook(txtMemberId.getText().trim(), txtIsbn.getText().trim());
                 BookCopy bookCopy = checkoutRecord.getBookCopy();
                 Book book = checkoutRecord.getBookCopy().getBook();
-                String columnNames[] = {
+                String[] columnNames = {
                         "Book Title",
                         "Book Copy Number",
                         "Checkout Date",
                         "Due Date"
                 };
-                String rowValues[][] = {
+                String[][] rowValues = {
                         {book.getTitle(), String.valueOf(bookCopy.getCopyNum()), checkoutRecord.getCheckoutDate().toString(), checkoutRecord.getDueDate().toString()},
                 };
                 tblCheckoutRecord.setModel(new DefaultTableModel(rowValues, columnNames));
