@@ -89,7 +89,9 @@ public class SearchBookWindow implements UIFrame {
 
     @Override
     public void run() {
-
+        txtIsbn.setText("");
+        ((DefaultTableModel) tblMember.getModel()).setRowCount(0);
+        ((DefaultTableModel) tblMember.getModel()).setColumnCount(0);
     }
 
     @Override
