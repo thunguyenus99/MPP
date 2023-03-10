@@ -34,9 +34,7 @@ public class AddCopyWindow implements UIFrame, Initialization {
                 Book book = controller.addBookCopy(this.isbnTextField.getText());
                 this.messageLabel.setText("Add Copy Successfully. Number of Copy: " + book.getBookCopyList().size());
             } catch (RuleException | AddBookCopyException ex) {
-                String message = ex.getMessage();
-                this.messageLabel.setText(message);
-                throw new RuntimeException(ex);
+                JOptionPane.showMessageDialog(panel, ex.getMessage());
             }
         });
     }

@@ -5,8 +5,6 @@ import data.model.User;
 
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class HomeWindow implements UIFrame, Initialization {
     private JPanel panel;

@@ -38,8 +38,7 @@ public class LoginWindow implements UIFrame, Initialization {
                 // navigate to another page
                 RootFrame.getInstance().showPanel(RootFrame.HOME_FRAME);
             } catch (RuleException | LoginException ex) {
-                String message = ex.getMessage();
-                this.messageLabel.setText(message);
+                JOptionPane.showMessageDialog(panel, ex.getMessage());
             }
         });
     }
