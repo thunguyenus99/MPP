@@ -1,9 +1,11 @@
-package presentation;
+package presentation.addmember;
 
 import business.LibraryController;
 import business.exception.AddMemberException;
 import data.model.Address;
 import data.model.LibraryMember;
+import presentation.RootFrame;
+import presentation.UIFrame;
 import presentation.validator.RuleException;
 import presentation.validator.Validator;
 import presentation.validator.ValidatorFactory;

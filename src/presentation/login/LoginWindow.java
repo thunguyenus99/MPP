@@ -1,8 +1,12 @@
-package presentation;
+package presentation.login;
 
 import business.LibraryController;
 import business.exception.LoginException;
 import data.model.User;
+import presentation.LoggedInUser;
+import presentation.RootFrame;
+import presentation.UIFrame;
+import presentation.home.HomeUiPlugin;
 import presentation.validator.RuleException;
 import presentation.validator.Validator;
 import presentation.validator.ValidatorFactory;
@@ -36,7 +40,7 @@ public class LoginWindow implements UIFrame {
                 // set logged-in user
                 LoggedInUser.set(user);
                 // navigate to another page
-                RootFrame.getInstance().addPanel(RootFrame.HOME_WINDOW, true);
+                RootFrame.getInstance().addPanel(HomeUiPlugin.NAME, true);
             } catch (RuleException | LoginException ex) {
                 JOptionPane.showMessageDialog(panel, ex.getMessage());
             }

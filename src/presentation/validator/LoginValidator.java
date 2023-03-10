@@ -1,7 +1,7 @@
 package presentation.validator;
 
-import presentation.LoginWindow;
 import presentation.UIFrame;
+import presentation.login.LoginWindow;
 
 public class LoginValidator implements Validator {
 

@@ -1,10 +1,12 @@
-package presentation;
+package presentation.searchbook;
 
 import business.LibraryController;
 import data.model.Book;
 import data.model.BookCopy;
 import data.model.CheckoutRecord;
 import data.model.LibraryMember;
+import presentation.RootFrame;
+import presentation.UIFrame;
 import presentation.validator.RuleException;
 import presentation.validator.ValidatorFactory;
 

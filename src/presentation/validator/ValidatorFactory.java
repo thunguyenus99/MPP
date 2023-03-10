@@ -1,8 +1,12 @@
 package presentation.validator;
 
-import presentation.*;
+import presentation.UIFrame;
 import presentation.addauthor.AddAuthorWindow;
 import presentation.addbook.AddBookWindow;
+import presentation.addcopy.AddCopyWindow;
+import presentation.addmember.AddMemberWindow;
+import presentation.login.LoginWindow;
+import presentation.searchbook.SearchBookWindow;
 
 import java.util.HashMap;
 import java.util.Map;

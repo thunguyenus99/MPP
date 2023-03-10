@@ -1,7 +1,7 @@
 package presentation.validator;
 
-import presentation.AddMemberWindow;
 import presentation.UIFrame;
+import presentation.addmember.AddMemberWindow;
 
 public class AddMemberValidator implements Validator {
 

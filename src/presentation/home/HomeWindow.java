@@ -1,8 +1,16 @@
-package presentation;
+package presentation.home;
 
 import data.model.Role;
 import data.model.User;
+import presentation.LoggedInUser;
+import presentation.RootFrame;
+import presentation.UIFrame;
 import presentation.addbook.AddBookUiPlugin;
+import presentation.addcopy.AddCopyUiPlugin;
+import presentation.addmember.AddMemberUiPlugin;
+import presentation.checkoutbook.CheckBookUiPlugin;
+import presentation.printcheckoutrecords.PrintCheckoutRecordsUiPlugin;
+import presentation.searchbook.SearchBookUiPlugin;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -21,12 +29,12 @@ public class HomeWindow implements UIFrame {
     }
 
     void setUpListener() {
-        addCopyButton.addActionListener(e -> RootFrame.getInstance().addPanel(RootFrame.ADD_COPY_WINDOW, true));
-        checkoutBookButton.addActionListener(e -> RootFrame.getInstance().addPanel(RootFrame.CHECKOUT_BOOK_WINDOW, true));
-        addMemberButton.addActionListener(e -> RootFrame.getInstance().addPanel(RootFrame.ADD_MEMBER_WINDOW, true));
-        addBookButton.addActionListener(e -> RootFrame.getInstance().addPanel(AddBookUiPlugin.ADD_BOOK_WINDOW, true));
-        printCheckOutRecordsButton.addActionListener(e -> RootFrame.getInstance().addPanel(RootFrame.PRINT_CHECKOUT_RECORDS_WINDOW, true));
-        searchBookButton.addActionListener(e -> RootFrame.getInstance().addPanel(RootFrame.SEARCH_BOOK_WINDOW, true));
+        addCopyButton.addActionListener(e -> RootFrame.getInstance().addPanel(AddCopyUiPlugin.NAME, true));
+        checkoutBookButton.addActionListener(e -> RootFrame.getInstance().addPanel(CheckBookUiPlugin.NAME, true));
+        addMemberButton.addActionListener(e -> RootFrame.getInstance().addPanel(AddMemberUiPlugin.NAME, true));
+        addBookButton.addActionListener(e -> RootFrame.getInstance().addPanel(AddBookUiPlugin.NAME, true));
+        printCheckOutRecordsButton.addActionListener(e -> RootFrame.getInstance().addPanel(PrintCheckoutRecordsUiPlugin.NAME, true));
+        searchBookButton.addActionListener(e -> RootFrame.getInstance().addPanel(SearchBookUiPlugin.NAME, true));
     }
 
     public void authorizeFunction() {

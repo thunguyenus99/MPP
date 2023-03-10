@@ -1,8 +1,10 @@
-package presentation;
+package presentation.addcopy;
 
 import business.LibraryController;
 import business.exception.AddBookCopyException;
 import data.model.Book;
+import presentation.RootFrame;
+import presentation.UIFrame;
 import presentation.validator.RuleException;
 import presentation.validator.Validator;
 import presentation.validator.ValidatorFactory;
