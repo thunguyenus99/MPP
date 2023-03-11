@@ -1,14 +1,13 @@
 package presentation.addauthor;
 
 import data.model.Address;
-import data.model.Author;
 import presentation.BackButton;
 import presentation.RootFrame;
 import presentation.UIFrame;
 import presentation.UiUtils;
 import presentation.addbook.AddBookWindow;
-import presentation.dto.AddressDTO;
-import presentation.dto.AuthorDTO;
+import business.dto.AddressDTO;
+import business.dto.AuthorDTO;
 import presentation.validator.RuleException;
 import presentation.validator.ValidatorFactory;
 

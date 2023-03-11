@@ -1,7 +1,7 @@
-package presentation.mapper;
+package business.mapper;
 
 import data.model.Book;
-import presentation.dto.BookDTO;
+import business.dto.BookDTO;
 
 public class BookDTOMapper implements Mapper<BookDTO, Book> {
     @Override

@@ -1,5 +1,7 @@
 package presentation;
 
+import business.LoggedInUser;
+
 import javax.swing.*;
 
 public class LogOutButton extends JButton {

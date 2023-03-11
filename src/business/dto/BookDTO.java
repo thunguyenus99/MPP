@@ -1,4 +1,4 @@
-package presentation.dto;
+package business.dto;
 
 import java.util.List;
 

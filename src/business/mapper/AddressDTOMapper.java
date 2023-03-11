@@ -1,7 +1,7 @@
-package presentation.mapper;
+package business.mapper;
 
 import data.model.Address;
-import presentation.dto.AddressDTO;
+import business.dto.AddressDTO;
 
 public class AddressDTOMapper implements Mapper<AddressDTO, Address> {
     @Override

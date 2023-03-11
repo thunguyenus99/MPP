@@ -1,7 +1,7 @@
-package presentation.mapper;
+package business.mapper;
 
 import data.model.Author;
-import presentation.dto.AuthorDTO;
+import business.dto.AuthorDTO;
 
 public class AuthorDTOMapper implements Mapper<AuthorDTO, Author> {
     @Override

@@ -7,11 +7,10 @@ import business.exception.LoginException;
 import business.model.ModificationType;
 import data.model.*;
 import data.repository.LibraryRepositoryImpl;
-import presentation.LoggedInUser;
-import presentation.dto.BookDTO;
-import presentation.dto.LibraryMemberDTO;
-import presentation.mapper.BookDTOMapper;
-import presentation.mapper.LibraryMemberDTOMapper;
+import business.dto.BookDTO;
+import business.dto.LibraryMemberDTO;
+import business.mapper.BookDTOMapper;
+import business.mapper.LibraryMemberDTOMapper;
 
 import java.time.LocalDate;
 import java.util.List;

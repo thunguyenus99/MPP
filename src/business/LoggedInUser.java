@@ -1,4 +1,4 @@
-package presentation;
+package business;
 
 import data.model.User;
 

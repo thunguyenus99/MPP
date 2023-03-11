@@ -1,4 +1,4 @@
-package presentation.dto;
+package business.dto;
 
 public class LibraryMemberDTO {
     private String memberId;

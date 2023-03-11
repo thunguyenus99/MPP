@@ -1,4 +1,4 @@
-package presentation.mapper;
+package business.mapper;
 
 import java.util.List;
 import java.util.stream.Collectors;

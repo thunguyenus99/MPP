@@ -1,7 +1,7 @@
-package presentation.mapper;
+package business.mapper;
 
 import data.model.LibraryMember;
-import presentation.dto.LibraryMemberDTO;
+import business.dto.LibraryMemberDTO;
 
 public class LibraryMemberDTOMapper implements Mapper<LibraryMemberDTO, LibraryMember> {
 

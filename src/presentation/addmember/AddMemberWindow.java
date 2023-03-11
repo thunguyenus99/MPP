@@ -2,13 +2,11 @@ package presentation.addmember;
 
 import business.LibraryController;
 import business.model.ModificationType;
-import data.model.Address;
-import data.model.LibraryMember;
 import presentation.RootFrame;
 import presentation.UIFrame;
 import presentation.UiUtils;
-import presentation.dto.AddressDTO;
-import presentation.dto.LibraryMemberDTO;
+import business.dto.AddressDTO;
+import business.dto.LibraryMemberDTO;
 import presentation.validator.RuleException;
 import presentation.validator.Validator;
 import presentation.validator.ValidatorFactory;

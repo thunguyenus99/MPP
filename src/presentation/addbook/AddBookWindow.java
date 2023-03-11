@@ -6,8 +6,8 @@ import presentation.BackButton;
 import presentation.RootFrame;
 import presentation.UIFrame;
 import presentation.addauthor.AddAuthorUiPlugin;
-import presentation.dto.AuthorDTO;
-import presentation.dto.BookDTO;
+import business.dto.AuthorDTO;
+import business.dto.BookDTO;
 import presentation.validator.RuleException;
 import presentation.validator.ValidatorFactory;
 
