@@ -13,17 +13,19 @@ public class AddBookValidator implements Validator {
         String numOfCopies = addBookWindow.getNumOfCopies();
         String authorList = addBookWindow.getAuthorList();
         if (isbn.isEmpty() || title.isEmpty() || maxCheckoutLength.isEmpty() || numOfCopies.isEmpty() || authorList.isEmpty()) {
-            throw new RuleException("No fields should be empty.");
+            throw new RuleException("No fields should be empty!");
         }
         try {
             Integer.parseInt(maxCheckoutLength);
         } catch (NumberFormatException ex) {
-            throw new RuleException("Maximum checkout length should be numeric");
+            throw new RuleException("Maximum checkout length should be numeric!");
         }
         try {
-            Integer.parseInt(numOfCopies);
+            if (Integer.parseInt(numOfCopies) <= 0) {
+                throw new RuleException("Number of copies must be greater than 0!");
+            }
         } catch (NumberFormatException ex) {
-            throw new RuleException("Number of copies should be numeric");
+            throw new RuleException("Number of copies should be numeric!");
         }
     }
 }

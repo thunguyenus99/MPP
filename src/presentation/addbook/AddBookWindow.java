@@ -1,10 +1,10 @@
 package presentation.addbook;
 
 import business.LibraryController;
+import business.model.ModificationType;
 import data.model.Author;
 import data.model.Book;
 import presentation.BackButton;
-import business.model.ModificationType;
 import presentation.RootFrame;
 import presentation.UIFrame;
 import presentation.addauthor.AddAuthorUiPlugin;
@@ -57,11 +57,11 @@ public class AddBookWindow implements UIFrame {
                 return;
             }
             Book book = new Book(
-                isbnTextField.getText(),
-                titleTextField.getText(),
-                Integer.parseInt(maxCheckoutLengthTextField.getText()),
-                Integer.parseInt(numOfCopiesTextField.getText()),
-                authorList
+                    isbnTextField.getText(),
+                    titleTextField.getText(),
+                    Integer.parseInt(maxCheckoutLengthTextField.getText()),
+                    Integer.parseInt(numOfCopiesTextField.getText()),
+                    authorList
             );
             ModificationType status = controller.addBook(book);
             if (status == ModificationType.ADD) {
@@ -94,15 +94,18 @@ public class AddBookWindow implements UIFrame {
 
     public void addAuthor(Author author) {
         authorList.add(author);
-        updateAuthorListLabel(author);
+        updateAuthorListLabel();
     }
 
-    private void updateAuthorListLabel(Author author) {
-        if (authorList.size() == 1) {
-            authorListLabel.setText(authorListLabel.getText() + author.getFirstName() + " " + author.getLastName());
-        } else {
-            authorListLabel.setText(authorListLabel.getText() + ", " + author.getFirstName() + " " + author.getLastName());
+    private void updateAuthorListLabel() {
+        StringBuilder label = new StringBuilder("List of Authors: ");
+        for (int i = 0; i < authorList.size(); i++) {
+            label.append(authorList.get(i));
+            if (i != authorList.size() - 1) {
+                label.append(", ");
+            }
         }
+        authorListLabel.setText(label.toString());
     }
 
     public String getIsbn() {

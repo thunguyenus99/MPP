@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public class LibraryController {
 
-    private static LibraryController INSTANCE;
+    private static LibraryController instance;
     private final LibraryRepository repository;
 
     private LibraryController() {
@@ -23,10 +23,10 @@ public class LibraryController {
     }
 
     public static LibraryController getInstance() {
-        if (LibraryController.INSTANCE == null) {
-            LibraryController.INSTANCE = new LibraryController();
+        if (LibraryController.instance == null) {
+            LibraryController.instance = new LibraryController();
         }
-        return LibraryController.INSTANCE;
+        return LibraryController.instance;
     }
 
     public void login(String userId, String password) throws LoginException {
