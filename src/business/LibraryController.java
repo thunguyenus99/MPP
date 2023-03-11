@@ -1,12 +1,12 @@
 package business;
 
 import business.exception.*;
+import business.model.DataStatus;
 import data.model.*;
 import data.repository.LibraryRepositoryImpl;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -37,12 +37,11 @@ public class LibraryController {
         return user;
     }
 
-    public void addMember(LibraryMember member) throws AddMemberException {
-        Map<String, LibraryMember> allMembers = repository.readMembers();
-        if (allMembers.containsKey(member.getMemberId())) {
-            throw new AddMemberException("Member already exists.");
-        }
+    public DataStatus addMember(LibraryMember member) {
+        LibraryMember existedMember = repository.getMemberById(member.getMemberId());
+        DataStatus status = existedMember == null ? DataStatus.ADD : DataStatus.UPDATE;
         repository.saveMember(member);
+        return status;
     }
 
     public Book addBookCopy(String isbn) throws AddBookCopyException {
@@ -55,12 +54,11 @@ public class LibraryController {
         return book;
     }
 
-    public void addBook(Book book) throws AddBookException {
-        Map<String, Book> bookMap = repository.readBooks();
-        if (bookMap.containsKey(book.getIsbn())) {
-            throw new AddBookException("Book already exists.");
-        }
+    public DataStatus addBook(Book book){
+        Book existedBook = repository.getBookByIsbn(book.getIsbn());
+        DataStatus status = existedBook == null ? DataStatus.ADD : DataStatus.UPDATE;
         repository.saveBook(book);
+        return status;
     }
 
     public List<CheckoutRecord> getCheckoutRecordByMemberId(String memberId) throws GetCheckoutRecordException {

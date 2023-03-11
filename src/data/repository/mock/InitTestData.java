@@ -47,8 +47,6 @@ public class InitTestData {
             add(new Book("99-22223", "Thinking Java", 21, 2, Collections.singletonList(authors.get(3))));
             add(new Book("48-56882", "Jimmy's First Day of School", 7, 2, Collections.singletonList(authors.get(4))));
         }
-
-        ;
     };
 
     private static List<User> users = new ArrayList<>() {
