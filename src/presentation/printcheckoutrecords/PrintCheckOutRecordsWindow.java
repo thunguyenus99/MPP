@@ -40,9 +40,7 @@ public class PrintCheckOutRecordsWindow implements UIFrame {
                 "Book Title",
                 "Book Copy Number",
                 "Due Date",
-                "Checkout Date",
-                "Checkin Date",
-                "Fine"
+                "Checkout Date"
         };
 
         String[][] rowValues = new String[checkoutRecords.size()][7];
@@ -55,9 +53,6 @@ public class PrintCheckOutRecordsWindow implements UIFrame {
             rowValues[i][2] = String.valueOf(bookCopy.getCopyNum());
             rowValues[i][3] = record.getDueDate().toString();
             rowValues[i][4] = record.getCheckoutDate().toString();
-            rowValues[i][5] = record.getCheckinDate() == null ? "" : record.getCheckinDate().toString();
-            rowValues[i][6] = String.valueOf(record.getFine());
-
         }
         checkOutRecordTbl.setModel(new DefaultTableModel(rowValues, columnNames));
     }
