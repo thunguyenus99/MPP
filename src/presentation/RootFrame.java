@@ -14,8 +14,8 @@ import presentation.searchbook.SearchBookUiPlugin;
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
+import java.util.Stack;
 
 public class RootFrame extends JFrame {
 
@@ -23,7 +23,7 @@ public class RootFrame extends JFrame {
 
     private final Map<String, UIFrame> uiFrameMap = new HashMap<>();
 
-    private LinkedList<String> frameStack;
+    private Stack<String> frameStack;
 
     private RootFrame() {
         initialize();
@@ -54,7 +54,7 @@ public class RootFrame extends JFrame {
         UiPlugin addBookUiPlugin = new AddBookUiPlugin();
         plugUi(addBookUiPlugin);
         plugUi(new AddAuthorUiPlugin((AddBookWindow) addBookUiPlugin.getUiFrame()));
-        frameStack = new LinkedList<>();
+        frameStack = new Stack<>();
         addPanel(LoginUiPlugin.NAME, true);
     }
 
@@ -64,7 +64,7 @@ public class RootFrame extends JFrame {
     }
 
     public void removePanel(boolean runInit) {
-        if (frameStack.size() <= 1) {
+        if (frameStack.isEmpty()) {
             throw new RuntimeException();
         }
         frameStack.pop();
