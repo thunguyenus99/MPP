@@ -84,13 +84,6 @@ public class LibraryRepositoryImpl implements LibraryRepository {
         saveToStorage(StorageType.BOOK, map);
     }
 
-    @Override
-    public void saveCheckoutRecord(CheckoutRecord checkoutRecord) {
-        HashMap<String, CheckoutRecord> map = readCheckoutRecords();
-        map.put(checkoutRecord.getRecordId(), checkoutRecord);
-        saveToStorage(StorageType.CHECKOUT_RECORD, map);
-    }
-
     // initialize data
     public static void loadBookMap(List<Book> bookList) {
         HashMap<String, Book> bookMap = new HashMap<>();

@@ -22,8 +22,6 @@ public interface LibraryRepository {
 
     void saveBook(Book book);
 
-    void saveCheckoutRecord(CheckoutRecord checkoutRecord);
-
     LibraryMember getMemberById(String memberId);
 
     Book getBookByIsbn(String isbn);
