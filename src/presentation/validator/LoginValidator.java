@@ -13,8 +13,5 @@ public class LoginValidator implements Validator {
         if (userId.isEmpty() || password.isEmpty()) {
             throw new RuleException("User ID and Password can not be empty.");
         }
-        if (userId.length() != 3) {
-            throw new RuleException("User ID should have 3 characters.");
-        }
     }
 }

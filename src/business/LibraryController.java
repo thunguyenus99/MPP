@@ -4,6 +4,7 @@ import business.exception.*;
 import business.model.ModificationType;
 import data.model.*;
 import data.repository.LibraryRepositoryImpl;
+import presentation.LoggedInUser;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -26,7 +27,7 @@ public class LibraryController {
         return LibraryController.INSTANCE;
     }
 
-    public User login(String userId, String password) throws LoginException {
+    public void login(String userId, String password) throws LoginException {
         User user = repository.getUserById(userId);
         if (user == null) {
             throw new LoginException("User does not exist.");
@@ -34,7 +35,7 @@ public class LibraryController {
         if (!user.getPassword().equals(password)) {
             throw new LoginException("Password is incorrect");
         }
-        return user;
+        LoggedInUser.set(user);
     }
 
     public ModificationType addMember(LibraryMember member) {
@@ -61,7 +62,7 @@ public class LibraryController {
         return status;
     }
 
-    public List<CheckoutRecord> getCheckoutRecordByMemberId(String memberId) throws GetCheckoutRecordException {
+    public List<CheckoutRecord> getCheckoutRecords(String memberId) throws GetCheckoutRecordException {
         LibraryMember member = repository.getMemberById(memberId);
         if (member == null) {
             throw new GetCheckoutRecordException("Member does not exist.");

@@ -8,9 +8,7 @@ import business.model.ModificationType;
 import presentation.RootFrame;
 import presentation.UIFrame;
 import presentation.addauthor.AddAuthorUiPlugin;
-import presentation.addauthor.AddAuthorWindow;
 import presentation.validator.RuleException;
-import presentation.validator.Validator;
 import presentation.validator.ValidatorFactory;
 
 import javax.swing.*;
@@ -39,11 +37,8 @@ public class AddBookWindow implements UIFrame {
 
     private final List<Author> authorList;
 
-    private final Validator validator;
-
     public AddBookWindow() {
         controller = LibraryController.getInstance();
-        validator = ValidatorFactory.getValidator(this.getClass());
         authorList = new ArrayList<>();
         setUpListener();
     }
@@ -52,7 +47,7 @@ public class AddBookWindow implements UIFrame {
         addAuthorButton.addActionListener(e -> RootFrame.getInstance().addPanel(AddAuthorUiPlugin.NAME, true));
         addButton.addActionListener(e -> {
             try {
-                validator.validate(this);
+                ValidatorFactory.getValidator(this.getClass()).validate(this);
             } catch (RuleException ex) {
                 JOptionPane.showMessageDialog(panel, ex.getMessage());
                 return;

@@ -2,13 +2,10 @@ package presentation.login;
 
 import business.LibraryController;
 import business.exception.LoginException;
-import data.model.User;
-import presentation.LoggedInUser;
 import presentation.RootFrame;
 import presentation.UIFrame;
 import presentation.home.HomeUiPlugin;
 import presentation.validator.RuleException;
-import presentation.validator.Validator;
 import presentation.validator.ValidatorFactory;
 
 import javax.swing.*;
@@ -24,26 +21,21 @@ public class LoginWindow implements UIFrame {
 
     private final LibraryController controller;
 
-    private final Validator validator;
-
     LoginWindow() {
         controller = LibraryController.getInstance();
-        validator = ValidatorFactory.getValidator(this.getClass());
         setUpListener();
     }
 
     private void setUpListener() {
         loginButton.addActionListener(e -> {
             try {
-                validator.validate(this);
-                User user = controller.login(getUserId(), getPassword());
-                // set logged-in user
-                LoggedInUser.set(user);
-                // navigate to another page
-                RootFrame.getInstance().addPanel(HomeUiPlugin.NAME, true);
+                ValidatorFactory.getValidator(this.getClass()).validate(this);
+                controller.login(getUserId(), getPassword());
             } catch (RuleException | LoginException ex) {
                 JOptionPane.showMessageDialog(panel, ex.getMessage());
+                return;
             }
+            RootFrame.getInstance().addPanel(HomeUiPlugin.NAME, true);
         });
     }
 

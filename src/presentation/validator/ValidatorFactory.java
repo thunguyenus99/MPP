@@ -7,6 +7,7 @@ import presentation.addcopy.AddCopyWindow;
 import presentation.addmember.AddMemberWindow;
 import presentation.checkoutbook.CheckoutBookWindow;
 import presentation.login.LoginWindow;
+import presentation.printcheckoutrecords.PrintCheckOutRecordsWindow;
 import presentation.searchbook.SearchBookWindow;
 
 import java.util.HashMap;
@@ -24,6 +25,7 @@ public class ValidatorFactory {
         map.put(AddBookWindow.class, new AddBookValidator());
         map.put(SearchBookWindow.class, new SearchBookValidator());
         map.put(CheckoutBookWindow.class, new CheckoutBookValidator());
+        map.put(PrintCheckOutRecordsWindow.class, new PrintCheckoutRecordsValidator());
     }
 
     public static Validator getValidator(Class<? extends UIFrame> component) {
