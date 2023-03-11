@@ -76,6 +76,7 @@ public class AddBookWindow implements UIFrame {
         numOfCopiesTextField.setText("");
         authorListLabel.setText("List of Authors: ");
         messageLabel.setText("");
+        authorList.clear();
     }
 
     @Override
