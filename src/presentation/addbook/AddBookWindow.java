@@ -39,15 +39,12 @@ public class AddBookWindow implements UIFrame {
 
     private final List<Author> authorList;
 
-    private final AddAuthorWindow addAuthorWindow;
-
     private final Validator validator;
 
     public AddBookWindow() {
         controller = LibraryController.getInstance();
         validator = ValidatorFactory.getValidator(this.getClass());
         authorList = new ArrayList<>();
-        addAuthorWindow = new AddAuthorWindow(this);
         setUpListener();
     }
 
