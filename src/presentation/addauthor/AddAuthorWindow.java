@@ -52,6 +52,7 @@ public class AddAuthorWindow implements UIFrame {
                 validator.validate(this);
             } catch (RuleException ex) {
                 JOptionPane.showMessageDialog(panel, ex.getMessage());
+                return;
             }
             Author author = new Author(
                     confidentialsTextField.getText(),

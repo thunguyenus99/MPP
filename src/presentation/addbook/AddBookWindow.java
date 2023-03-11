@@ -8,7 +8,6 @@ import business.model.ModificationType;
 import presentation.RootFrame;
 import presentation.UIFrame;
 import presentation.addauthor.AddAuthorUiPlugin;
-import presentation.addauthor.AddAuthorWindow;
 import presentation.validator.RuleException;
 import presentation.validator.ValidatorFactory;
 
@@ -38,12 +37,9 @@ public class AddBookWindow implements UIFrame {
 
     private final List<Author> authorList;
 
-    private final AddAuthorWindow addAuthorWindow;
-
     public AddBookWindow() {
         controller = LibraryController.getInstance();
         authorList = new ArrayList<>();
-        addAuthorWindow = new AddAuthorWindow(this);
         setUpListener();
     }
 
