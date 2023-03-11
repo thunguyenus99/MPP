@@ -1,5 +1,5 @@
 package business.model;
 
-public enum DataStatus {
+public enum ModificationType {
     UPDATE, ADD
 }

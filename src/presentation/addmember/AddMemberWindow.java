@@ -3,7 +3,7 @@ package presentation.addmember;
 import business.LibraryController;
 import data.model.Address;
 import data.model.LibraryMember;
-import business.model.DataStatus;
+import business.model.ModificationType;
 import presentation.RootFrame;
 import presentation.UIFrame;
 import presentation.validator.RuleException;
@@ -52,8 +52,8 @@ public class AddMemberWindow implements UIFrame {
                 JOptionPane.showMessageDialog(root, message);
                 return;
             }
-            DataStatus status = controller.addMember(newMember);
-            if (status == DataStatus.ADD) {
+            ModificationType status = controller.addMember(newMember);
+            if (status == ModificationType.ADD) {
                 messageLabel.setText("Add Member successfully: " + firstNameTxt.getText() + " " + lastNameTxt.getText());
             } else {
                 messageLabel.setText("Member exists and get updated successfully: " + firstNameTxt.getText() + " " + lastNameTxt.getText());

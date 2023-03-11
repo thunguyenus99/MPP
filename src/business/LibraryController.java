@@ -1,7 +1,7 @@
 package business;
 
 import business.exception.*;
-import business.model.DataStatus;
+import business.model.ModificationType;
 import data.model.*;
 import data.repository.LibraryRepositoryImpl;
 
@@ -37,9 +37,9 @@ public class LibraryController {
         return user;
     }
 
-    public DataStatus addMember(LibraryMember member) {
+    public ModificationType addMember(LibraryMember member) {
         LibraryMember existedMember = repository.getMemberById(member.getMemberId());
-        DataStatus status = existedMember == null ? DataStatus.ADD : DataStatus.UPDATE;
+        ModificationType status = existedMember == null ? ModificationType.ADD : ModificationType.UPDATE;
         repository.saveMember(member);
         return status;
     }
@@ -54,9 +54,9 @@ public class LibraryController {
         return book;
     }
 
-    public DataStatus addBook(Book book){
+    public ModificationType addBook(Book book){
         Book existedBook = repository.getBookByIsbn(book.getIsbn());
-        DataStatus status = existedBook == null ? DataStatus.ADD : DataStatus.UPDATE;
+        ModificationType status = existedBook == null ? ModificationType.ADD : ModificationType.UPDATE;
         repository.saveBook(book);
         return status;
     }

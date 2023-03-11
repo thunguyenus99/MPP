@@ -4,7 +4,7 @@ import business.LibraryController;
 import data.model.Author;
 import data.model.Book;
 import presentation.BackButton;
-import business.model.DataStatus;
+import business.model.ModificationType;
 import presentation.RootFrame;
 import presentation.UIFrame;
 import presentation.addauthor.AddAuthorUiPlugin;
@@ -67,8 +67,8 @@ public class AddBookWindow implements UIFrame {
                 Integer.parseInt(numOfCopiesTextField.getText()),
                 authorList
             );
-            DataStatus status = controller.addBook(book);
-            if (status == DataStatus.ADD) {
+            ModificationType status = controller.addBook(book);
+            if (status == ModificationType.ADD) {
                 messageLabel.setText("Add Book successfully: " + titleTextField.getText() + " (" + isbnTextField.getText() + ")");
             } else {
                 messageLabel.setText("Book exists and get updated successfully: " + titleTextField.getText() + " (" + isbnTextField.getText() + ")");
