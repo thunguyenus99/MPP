@@ -39,16 +39,15 @@ public class HomeWindow implements UIFrame {
 
     public void authorizeFunction() {
         User user = LoggedInUser.get();
-        if (user != null) {
-            boolean isLibrarian = user.getAuthorizations().contains(Role.LIBRARIAN);
-            boolean isAdmin = user.getAuthorizations().contains(Role.ADMIN);
-            checkoutBookButton.setVisible(isLibrarian);
-            printCheckOutRecordsButton.setVisible(isLibrarian);
-            searchBookButton.setVisible(isLibrarian);
-            addBookButton.setVisible(isAdmin);
-            addMemberButton.setVisible(isAdmin);
-            addCopyButton.setVisible(isAdmin);
-        }
+        if (user == null) return;
+        boolean isLibrarian = user.getAuthorizations().contains(Role.LIBRARIAN);
+        boolean isAdmin = user.getAuthorizations().contains(Role.ADMIN);
+        checkoutBookButton.setVisible(isLibrarian);
+        printCheckOutRecordsButton.setVisible(isLibrarian);
+        searchBookButton.setVisible(isLibrarian);
+        addBookButton.setVisible(isAdmin);
+        addMemberButton.setVisible(isAdmin);
+        addCopyButton.setVisible(isAdmin);
     }
 
     @Override

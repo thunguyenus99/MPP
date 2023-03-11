@@ -23,8 +23,6 @@ public class LibraryRepositoryImpl implements LibraryRepository {
             + "/src/data/repository/local";
 //    + "\\src\\data\\repository\\local";
 
-    // get all data
-
     private HashMap<String, LibraryMember> readMembers() {
         return (HashMap<String, LibraryMember>) readFromStorage(StorageType.MEMBER);
     }
@@ -99,7 +97,7 @@ public class LibraryRepositoryImpl implements LibraryRepository {
             if (out != null) {
                 try {
                     out.close();
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
             }
         }
@@ -119,7 +117,7 @@ public class LibraryRepositoryImpl implements LibraryRepository {
             if (in != null) {
                 try {
                     in.close();
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
             }
         }

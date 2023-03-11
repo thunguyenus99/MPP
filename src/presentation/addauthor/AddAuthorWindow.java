@@ -5,6 +5,7 @@ import data.model.Author;
 import presentation.BackButton;
 import presentation.RootFrame;
 import presentation.UIFrame;
+import presentation.UiUtils;
 import presentation.addbook.AddBookWindow;
 import presentation.dto.AddressDTO;
 import presentation.dto.AuthorDTO;
@@ -15,27 +16,27 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
 public class AddAuthorWindow implements UIFrame {
-    private JTextField firstNameTextField;
-    private JTextField streetTextField;
-    private JTextField stateTextField;
-    private JTextField credentialsTextField;
-    private JTextField biographyTextField;
-    private JTextField lastNameTextField;
-    private JTextField cityTextField;
-    private JTextField zipTextField;
-    private JButton addButton;
-    private JTextField phoneTextField;
+    private JTextField txtFirstName;
+    private JTextField txtStreet;
+    private JTextField txtState;
+    private JTextField txtCredentials;
+    private JTextField txtBiography;
+    private JTextField txtLastName;
+    private JTextField txtCity;
+    private JTextField txtZip;
+    private JButton btnAdd;
+    private JTextField txtPhone;
     private JPanel panel;
-    private JLabel firstNameLabel;
-    private JLabel lastNameLabel;
-    private JLabel streetLabel;
-    private JLabel cityLabel;
-    private JLabel stateLabel;
-    private JLabel zipLabel;
-    private JLabel phoneLabel;
-    private JLabel credentialsLabel;
-    private JLabel biographyLabel;
-    private BackButton backButton;
+    private JLabel lblFirstName;
+    private JLabel lblLastName;
+    private JLabel lblStreet;
+    private JLabel lblCity;
+    private JLabel lblState;
+    private JLabel lblZip;
+    private JLabel lblPhone;
+    private JLabel lblCredentials;
+    private JLabel lblBiography;
+    private BackButton btnBack;
 
     private final AddBookWindow addBookWindow;
 
@@ -45,7 +46,7 @@ public class AddAuthorWindow implements UIFrame {
     }
 
     private void setUpListener() {
-        addButton.addActionListener(e -> {
+        btnAdd.addActionListener(e -> {
             try {
                 ValidatorFactory.getValidator(this.getClass()).validate(this);
             } catch (RuleException ex) {
@@ -53,16 +54,16 @@ public class AddAuthorWindow implements UIFrame {
                 return;
             }
             AuthorDTO authorDTO = new AuthorDTO(
-                    credentialsTextField.getText(),
-                    biographyTextField.getText(),
-                    firstNameTextField.getText(),
-                    lastNameTextField.getText(),
-                    phoneTextField.getText(),
+                    txtCredentials.getText(),
+                    txtBiography.getText(),
+                    txtFirstName.getText(),
+                    txtLastName.getText(),
+                    txtPhone.getText(),
                     new AddressDTO(
-                            streetTextField.getText(),
-                            cityTextField.getText(),
-                            stateTextField.getText(),
-                            zipTextField.getText()
+                            txtStreet.getText(),
+                            txtCity.getText(),
+                            txtState.getText(),
+                            txtZip.getText()
                     )
             );
             this.addBookWindow.addAuthor(authorDTO);
@@ -70,21 +71,9 @@ public class AddAuthorWindow implements UIFrame {
         });
     }
 
-    private void reset() {
-        firstNameTextField.setText("");
-        streetTextField.setText("");
-        stateTextField.setText("");
-        credentialsTextField.setText("");
-        biographyTextField.setText("");
-        lastNameTextField.setText("");
-        cityTextField.setText("");
-        zipTextField.setText("");
-        phoneTextField.setText("");
-    }
-
     @Override
     public void run() {
-        reset();
+        UiUtils.clearAllTextFields(getRoot());
     }
 
     @Override
@@ -98,31 +87,31 @@ public class AddAuthorWindow implements UIFrame {
     }
 
     public String getFirstName() {
-        return firstNameTextField.getText();
+        return txtFirstName.getText();
     }
 
     public String getLastName() {
-        return lastNameTextField.getText();
+        return txtLastName.getText();
     }
 
     public Address getAddress() {
         return new Address(
-                streetTextField.getText(),
-                cityTextField.getText(),
-                stateTextField.getText(),
-                zipTextField.getText()
+                txtStreet.getText(),
+                txtCity.getText(),
+                txtState.getText(),
+                txtZip.getText()
         );
     }
 
     public String getPhone() {
-        return phoneTextField.getText();
+        return txtPhone.getText();
     }
 
     public String getCredentials() {
-        return credentialsTextField.getText();
+        return txtCredentials.getText();
     }
 
     public String getBiography() {
-        return biographyTextField.getText();
+        return txtBiography.getText();
     }
 }

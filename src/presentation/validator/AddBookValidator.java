@@ -1,5 +1,6 @@
 package presentation.validator;
 
+import presentation.NumberUtils;
 import presentation.UIFrame;
 import presentation.addbook.AddBookWindow;
 
@@ -15,9 +16,7 @@ public class AddBookValidator implements Validator {
         if (isbn.isEmpty() || title.isEmpty() || maxCheckoutLength.isEmpty() || numOfCopies.isEmpty() || authorList.isEmpty()) {
             throw new RuleException("No fields should be empty!");
         }
-        try {
-            Integer.parseInt(maxCheckoutLength);
-        } catch (NumberFormatException ex) {
+        if (!NumberUtils.isNumeric(maxCheckoutLength)) {
             throw new RuleException("Maximum checkout length should be numeric!");
         }
         try {

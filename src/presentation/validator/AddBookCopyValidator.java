@@ -9,7 +9,7 @@ public class AddBookCopyValidator implements Validator {
         AddCopyWindow addCopyWindow = (AddCopyWindow) frame;
         String isbn = addCopyWindow.getIsbn();
         if (isbn.isEmpty()) {
-            throw new RuleException("ISBN can not be empty.");
+            throw new RuleException("ISBN must not be empty!");
         }
     }
 }
