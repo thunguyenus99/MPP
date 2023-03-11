@@ -21,7 +21,7 @@ public class InitTestData {
         }
     };
 
-    private static List<LibraryMember> members = new ArrayList<>() {
+    private static final List<LibraryMember> members = new ArrayList<>() {
         {
             add(new LibraryMember("1001", "Andy", "Rogers", addresses.get(4), "641-223-2211"));
             add(new LibraryMember("1002", "Drew", "Stevens", addresses.get(5), "702-998-2414"));
@@ -30,17 +30,17 @@ public class InitTestData {
         }
     };
 
-    private static List<Author> authors = new ArrayList<>() {
+    private static final List<Author> authors = new ArrayList<>() {
         {
-            add(new Author("confidentials", "A happy man is he.", "Joe", "Thomas", addresses.get(0), "641-445-2123"));
-            add(new Author("confidentials", "A happy wife is she.", "Sandra", "Thomas", addresses.get(0), "641-445-2123"));
-            add(new Author("confidentials", "Thinker of thoughts.", "Nirmal", "Pugh", addresses.get(1), "641-919-3223"));
-            add(new Author("confidentials", "Author of childrens' books.", "Andrew", "Cleveland", addresses.get(2), "976-445-2232"));
-            add(new Author("confidentials", "Known for her clever style.", "Sarah", "Connor", addresses.get(3), "123-422-2663"));
+            add(new Author("credentials", "A happy man is he.", "Joe", "Thomas", addresses.get(0), "641-445-2123"));
+            add(new Author("credentials", "A happy wife is she.", "Sandra", "Thomas", addresses.get(0), "641-445-2123"));
+            add(new Author("credentials", "Thinker of thoughts.", "Nirmal", "Pugh", addresses.get(1), "641-919-3223"));
+            add(new Author("credentials", "Author of childrens' books.", "Andrew", "Cleveland", addresses.get(2), "976-445-2232"));
+            add(new Author("credentials", "Known for her clever style.", "Sarah", "Connor", addresses.get(3), "123-422-2663"));
         }
     };
 
-    private static List<Book> books = new ArrayList<>() {
+    private static final List<Book> books = new ArrayList<>() {
         {
             add(new Book("23-11451", "The Big Fish", 21, 2, List.of(authors.get(0), authors.get(1))));
             add(new Book("28-12331", "Antartica", 7, 2, Collections.singletonList(authors.get(2))));
@@ -49,7 +49,7 @@ public class InitTestData {
         }
     };
 
-    private static List<User> users = new ArrayList<>() {
+    private static final List<User> users = new ArrayList<>() {
         {
             add(new User("101", "xyz", List.of(Role.LIBRARIAN)));
             add(new User("102", "abc", List.of(Role.ADMIN)));

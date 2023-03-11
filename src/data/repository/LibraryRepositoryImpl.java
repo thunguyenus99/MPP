@@ -2,7 +2,6 @@ package data.repository;
 
 import business.LibraryRepository;
 import data.model.Book;
-import data.model.CheckoutRecord;
 import data.model.LibraryMember;
 import data.model.User;
 
@@ -16,8 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class LibraryRepositoryImpl implements LibraryRepository {
-    enum StorageType {
-        BOOK, MEMBER, USER, CHECKOUT_RECORD
+    private HashMap<String, User> readUsers() {
+        return (HashMap<String, User>) readFromStorage(StorageType.USER);
     }
 
     public static final String OUTPUT_DIR = System.getProperty("user.dir")
@@ -25,24 +24,17 @@ public class LibraryRepositoryImpl implements LibraryRepository {
 //    + "\\src\\data\\repository\\local";
 
     // get all data
-    @Override
-    public HashMap<String, User> readUsers() {
-        return (HashMap<String, User>) readFromStorage(StorageType.USER);
-    }
 
-    @Override
-    public HashMap<String, LibraryMember> readMembers() {
+    private HashMap<String, LibraryMember> readMembers() {
         return (HashMap<String, LibraryMember>) readFromStorage(StorageType.MEMBER);
     }
 
-    @Override
-    public HashMap<String, Book> readBooks() {
+    private HashMap<String, Book> readBooks() {
         return (HashMap<String, Book>) readFromStorage(StorageType.BOOK);
     }
 
-    @Override
-    public HashMap<String, CheckoutRecord> readCheckoutRecords() {
-        return (HashMap<String, CheckoutRecord>) readFromStorage(StorageType.CHECKOUT_RECORD);
+    enum StorageType {
+        BOOK, MEMBER, USER
     }
 
     // get data by id
@@ -61,15 +53,6 @@ public class LibraryRepositoryImpl implements LibraryRepository {
         return bookMap.get(isbn);
     }
 
-
-    // save data
-    @Override
-    public void saveUser(User user) {
-        HashMap<String, User> map = readUsers();
-        map.put(user.getUserId(), user);
-        saveToStorage(StorageType.USER, map);
-    }
-
     @Override
     public void saveMember(LibraryMember member) {
         HashMap<String, LibraryMember> map = readMembers();
@@ -82,13 +65,6 @@ public class LibraryRepositoryImpl implements LibraryRepository {
         HashMap<String, Book> map = readBooks();
         map.put(book.getIsbn(), book);
         saveToStorage(StorageType.BOOK, map);
-    }
-
-    @Override
-    public void saveCheckoutRecord(CheckoutRecord checkoutRecord) {
-        HashMap<String, CheckoutRecord> map = readCheckoutRecords();
-        map.put(checkoutRecord.getRecordId(), checkoutRecord);
-        saveToStorage(StorageType.CHECKOUT_RECORD, map);
     }
 
     // initialize data

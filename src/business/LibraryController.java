@@ -1,6 +1,9 @@
 package business;
 
-import business.exception.*;
+import business.exception.AddBookCopyException;
+import business.exception.CheckoutException;
+import business.exception.GetCheckoutRecordException;
+import business.exception.LoginException;
 import business.model.ModificationType;
 import data.model.*;
 import data.repository.LibraryRepositoryImpl;
@@ -9,11 +12,10 @@ import presentation.LoggedInUser;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 public class LibraryController {
 
-    private static LibraryController INSTANCE;
+    private static LibraryController instance;
     private final LibraryRepository repository;
 
     private LibraryController() {
@@ -21,10 +23,10 @@ public class LibraryController {
     }
 
     public static LibraryController getInstance() {
-        if (LibraryController.INSTANCE == null) {
-            LibraryController.INSTANCE = new LibraryController();
+        if (LibraryController.instance == null) {
+            LibraryController.instance = new LibraryController();
         }
-        return LibraryController.INSTANCE;
+        return LibraryController.instance;
     }
 
     public void login(String userId, String password) throws LoginException {
@@ -90,7 +92,7 @@ public class LibraryController {
         BookCopy bookCopy = bookCopyOptional.get();
         bookCopy.setAvailable(false);
         LocalDate today = LocalDate.now();
-        CheckoutRecord checkoutRecord = new CheckoutRecord(UUID.randomUUID().toString(), bookCopy, libraryMember, today, today.plusDays(book.getMaxCheckoutLength()), null, 0, null);
+        CheckoutRecord checkoutRecord = new CheckoutRecord(bookCopy, libraryMember, today, today.plusDays(book.getMaxCheckoutLength()), null, 0, null);
         libraryMember.addCheckoutRecord(checkoutRecord);
         bookCopy.setCheckoutRecord(checkoutRecord);
         repository.saveMember(libraryMember);

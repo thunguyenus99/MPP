@@ -12,7 +12,7 @@ public class AddAuthorValidator implements Validator {
         String lastName = addAuthorWindow.getLastName();
         Address address = addAuthorWindow.getAddress();
         String phone = addAuthorWindow.getPhone();
-        String confidentials = addAuthorWindow.getConfidentials();
+        String credentials = addAuthorWindow.getCredentials();
         String biography = addAuthorWindow.getBiography();
         if (firstName.isEmpty() || lastName.isEmpty()) {
             throw new RuleException("Name can not be empty.");

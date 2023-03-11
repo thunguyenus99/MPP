@@ -5,24 +5,22 @@ import java.time.LocalDate;
 
 public class CheckoutRecord implements Serializable {
     private static final long serialVersionUID = -5073948164675636570L;
-    private String recordId;
 
-    private BookCopy bookCopy;
+    private final BookCopy bookCopy;
 
-    private LibraryMember libraryMember;
+    private final LibraryMember libraryMember;
 
-    private LocalDate checkoutDate;
+    private final LocalDate checkoutDate;
 
-    private LocalDate dueDate;
+    private final LocalDate dueDate;
 
-    private LocalDate checkinDate;
+    private final LocalDate checkinDate;
 
-    private double fine;
+    private final double fine;
 
-    private LocalDate paidFineDate;
+    private final LocalDate paidFineDate;
 
-    public CheckoutRecord(String recordId, BookCopy bookCopy, LibraryMember libraryMember, LocalDate checkoutDate, LocalDate dueDate, LocalDate checkinDate, double fine, LocalDate paidFineDate) {
-        this.recordId = recordId;
+    public CheckoutRecord(BookCopy bookCopy, LibraryMember libraryMember, LocalDate checkoutDate, LocalDate dueDate, LocalDate checkinDate, double fine, LocalDate paidFineDate) {
         this.bookCopy = bookCopy;
         this.libraryMember = libraryMember;
         this.checkoutDate = checkoutDate;
@@ -30,10 +28,6 @@ public class CheckoutRecord implements Serializable {
         this.checkinDate = checkinDate;
         this.fine = fine;
         this.paidFineDate = paidFineDate;
-    }
-
-    public String getRecordId() {
-        return recordId;
     }
 
     public BookCopy getBookCopy() {

@@ -7,7 +7,6 @@ import presentation.RootFrame;
 import presentation.UIFrame;
 import presentation.addbook.AddBookWindow;
 import presentation.validator.RuleException;
-import presentation.validator.Validator;
 import presentation.validator.ValidatorFactory;
 
 import javax.swing.*;
@@ -17,7 +16,7 @@ public class AddAuthorWindow implements UIFrame {
     private JTextField firstNameTextField;
     private JTextField streetTextField;
     private JTextField stateTextField;
-    private JTextField confidentialsTextField;
+    private JTextField credentialsTextField;
     private JTextField biographyTextField;
     private JTextField lastNameTextField;
     private JTextField cityTextField;
@@ -32,30 +31,27 @@ public class AddAuthorWindow implements UIFrame {
     private JLabel stateLabel;
     private JLabel zipLabel;
     private JLabel phoneLabel;
-    private JLabel confidentialsLabel;
+    private JLabel credentialsLabel;
     private JLabel biographyLabel;
     private BackButton backButton;
 
     private final AddBookWindow addBookWindow;
 
-    private final Validator validator;
-
     public AddAuthorWindow(AddBookWindow addBookWindow) {
         this.addBookWindow = addBookWindow;
-        validator = ValidatorFactory.getValidator(this.getClass());
         setUpListener();
     }
 
     private void setUpListener() {
         addButton.addActionListener(e -> {
             try {
-                validator.validate(this);
+                ValidatorFactory.getValidator(this.getClass()).validate(this);
             } catch (RuleException ex) {
                 JOptionPane.showMessageDialog(panel, ex.getMessage());
                 return;
             }
             Author author = new Author(
-                    confidentialsTextField.getText(),
+                    credentialsTextField.getText(),
                     biographyTextField.getText(),
                     firstNameTextField.getText(),
                     lastNameTextField.getText(),
@@ -76,7 +72,7 @@ public class AddAuthorWindow implements UIFrame {
         firstNameTextField.setText("");
         streetTextField.setText("");
         stateTextField.setText("");
-        confidentialsTextField.setText("");
+        credentialsTextField.setText("");
         biographyTextField.setText("");
         lastNameTextField.setText("");
         cityTextField.setText("");
@@ -120,8 +116,8 @@ public class AddAuthorWindow implements UIFrame {
         return phoneTextField.getText();
     }
 
-    public String getConfidentials() {
-        return confidentialsTextField.getText();
+    public String getCredentials() {
+        return credentialsTextField.getText();
     }
 
     public String getBiography() {
