@@ -72,7 +72,7 @@
           <text value="Telephone"/>
         </properties>
       </component>
-      <component id="7aa26" class="javax.swing.JTextField" binding="memberIdTxt">
+      <component id="7aa26" class="javax.swing.JTextField" binding="txtMemberId">
         <constraints>
           <grid row="0" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -80,7 +80,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="969f" class="javax.swing.JTextField" binding="firstNameTxt">
+      <component id="969f" class="javax.swing.JTextField" binding="txtFirstName">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -90,7 +90,7 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="29526" class="javax.swing.JTextField" binding="lastNameTxt">
+      <component id="29526" class="javax.swing.JTextField" binding="txtLastName">
         <constraints>
           <grid row="2" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -98,7 +98,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="fc222" class="javax.swing.JTextField" binding="streetTxt">
+      <component id="fc222" class="javax.swing.JTextField" binding="txtStreet">
         <constraints>
           <grid row="3" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -106,7 +106,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="fa95a" class="javax.swing.JTextField" binding="cityTxt">
+      <component id="fa95a" class="javax.swing.JTextField" binding="txtCity">
         <constraints>
           <grid row="4" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -114,7 +114,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="745d0" class="javax.swing.JTextField" binding="stateTxt">
+      <component id="745d0" class="javax.swing.JTextField" binding="txtState">
         <constraints>
           <grid row="5" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -122,7 +122,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="c3a09" class="javax.swing.JTextField" binding="zipTxt">
+      <component id="c3a09" class="javax.swing.JTextField" binding="txtZip">
         <constraints>
           <grid row="6" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -130,7 +130,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="3ff4b" class="javax.swing.JTextField" binding="numberTxt">
+      <component id="3ff4b" class="javax.swing.JTextField" binding="txtNumber">
         <constraints>
           <grid row="7" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -138,7 +138,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="96ff9" class="javax.swing.JButton" binding="submitBtn">
+      <component id="96ff9" class="javax.swing.JButton" binding="btnSubmit">
         <constraints>
           <grid row="8" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -146,7 +146,7 @@
           <text value="Submit"/>
         </properties>
       </component>
-      <component id="caf07" class="javax.swing.JLabel" binding="messageLabel">
+      <component id="caf07" class="javax.swing.JLabel" binding="lblMessage">
         <constraints>
           <grid row="9" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>

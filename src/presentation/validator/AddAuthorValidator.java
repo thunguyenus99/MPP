@@ -1,6 +1,5 @@
 package presentation.validator;
 
-import data.model.Address;
 import presentation.UIFrame;
 import presentation.addauthor.AddAuthorWindow;
 
@@ -10,12 +9,8 @@ public class AddAuthorValidator implements Validator {
         AddAuthorWindow addAuthorWindow = (AddAuthorWindow) frame;
         String firstName = addAuthorWindow.getFirstName();
         String lastName = addAuthorWindow.getLastName();
-        Address address = addAuthorWindow.getAddress();
-        String phone = addAuthorWindow.getPhone();
-        String credentials = addAuthorWindow.getCredentials();
-        String biography = addAuthorWindow.getBiography();
         if (firstName.isEmpty() || lastName.isEmpty()) {
-            throw new RuleException("Name can not be empty.");
+            throw new RuleException("Name must not be empty!");
         }
     }
 }

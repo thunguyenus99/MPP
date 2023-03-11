@@ -11,7 +11,7 @@ public class LoginValidator implements Validator {
         String userId = loginFrame.getUserId();
         String password = loginFrame.getPassword();
         if (userId.isEmpty() || password.isEmpty()) {
-            throw new RuleException("User ID and Password can not be empty.");
+            throw new RuleException("User ID and Password must not be empty!");
         }
     }
 }

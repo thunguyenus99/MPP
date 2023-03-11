@@ -76,6 +76,7 @@ public class AddBookWindow implements UIFrame {
         numOfCopiesTextField.setText("");
         authorListLabel.setText("List of Authors: ");
         messageLabel.setText("");
+        authorList.clear();
     }
 
     @Override
@@ -96,7 +97,8 @@ public class AddBookWindow implements UIFrame {
     private void updateAuthorListLabel() {
         StringBuilder label = new StringBuilder("List of Authors: ");
         for (int i = 0; i < authorList.size(); i++) {
-            label.append(authorList.get(i));
+            Author author = authorList.get(i);
+            label.append(author.getFirstName()).append(" ").append(author.getLastName());
             if (i != authorList.size() - 1) {
                 label.append(", ");
             }

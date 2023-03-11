@@ -57,7 +57,7 @@ public class LibraryController {
         return book;
     }
 
-    public ModificationType addBook(Book book){
+    public ModificationType addBook(Book book) {
         Book existedBook = repository.getBookByIsbn(book.getIsbn());
         ModificationType status = existedBook == null ? ModificationType.ADD : ModificationType.UPDATE;
         repository.saveBook(book);

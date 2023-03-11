@@ -67,14 +67,14 @@ public class SearchBookWindow implements UIFrame {
         String[][] rowValues = new String[bookCopies.size()][7];
         for (int i = 0; i < bookCopies.size(); i++) {
             BookCopy bookCopy = bookCopies.get(i);
+            rowValues[i][0] = book.getIsbn();
+            rowValues[i][1] = book.getTitle();
+            rowValues[i][2] = String.valueOf(bookCopy.getCopyNum());
             CheckoutRecord checkoutRecord = bookCopy.getCheckoutRecord();
             if (checkoutRecord == null) {
                 continue;
             }
             LibraryMember member = checkoutRecord.getLibraryMember();
-            rowValues[i][0] = book.getIsbn();
-            rowValues[i][1] = book.getTitle();
-            rowValues[i][2] = String.valueOf(bookCopy.getCopyNum());
             rowValues[i][3] = member.getMemberId();
             rowValues[i][4] = member.getFirstName() + " " + member.getLastName();
             rowValues[i][5] = checkoutRecord.getCheckoutDate().toString();

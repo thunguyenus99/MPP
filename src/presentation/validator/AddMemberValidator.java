@@ -1,5 +1,6 @@
 package presentation.validator;
 
+import presentation.NumberUtils;
 import presentation.UIFrame;
 import presentation.addmember.AddMemberWindow;
 
@@ -7,39 +8,25 @@ public class AddMemberValidator implements Validator {
 
     @Override
     public void validate(UIFrame frame) throws RuleException {
-        AddMemberWindow addMemberWindow = (AddMemberWindow) frame;
-        // TODO
-
-        if (addMemberWindow.getMemberIdTxt().getText() == null || addMemberWindow.getMemberIdTxt().getText().trim().isEmpty()) {
-            throw new RuleException("Member Id cannot be empty");
+        AddMemberWindow window = (AddMemberWindow) frame;
+        String memberId = window.getTxtMemberId().getText().trim();
+        if (memberId.isEmpty()) {
+            throw new RuleException("Member ID must not be empty!");
         }
-        if(!isNumeric(addMemberWindow.getMemberIdTxt().getText()))
-        {
-            throw  new RuleException("Invalid data in Member Id field");
+        if (!NumberUtils.isNumeric(memberId)) {
+            throw new RuleException("Member ID invalid!");
         }
 
-        if(!isNumeric(addMemberWindow.getNumberTxt().getText()))
-        {
-            throw  new RuleException("Invalid data in Phone Number field");
+        if (!NumberUtils.isNumeric(window.getTxtNumber().getText().trim())) {
+            throw new RuleException("Phone Number invalid!");
         }
 
-        if(addMemberWindow.getFirstNameTxt().getText() == null || addMemberWindow.getFirstNameTxt().getText().trim().isEmpty())
-        {
-            throw  new RuleException("First Name cannot be empty");
+        if (window.getTxtFirstName().getText().trim().isEmpty()) {
+            throw new RuleException("First Name must not be empty!");
         }
 
-        if(addMemberWindow.getLastNameTxt().getText() == null || addMemberWindow.getLastNameTxt().getText().trim().isEmpty())
-        {
-            throw  new RuleException("Last Name cannot be empty");
-        }
-    }
-
-    private boolean isNumeric(String val) {
-        try {
-            Integer intValue = Integer.parseInt(val);
-            return true;
-        } catch (NumberFormatException ex) {
-            return false;
+        if (window.getTxtLastName().getText().trim().isEmpty()) {
+            throw new RuleException("Last Name must not be empty!");
         }
     }
 }
