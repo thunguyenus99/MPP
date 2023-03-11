@@ -11,7 +11,7 @@ public class AddBookValidator implements Validator {
         String title = addBookWindow.getTitle();
         String maxCheckoutLength = addBookWindow.getMaxCheckoutLength();
         String numOfCopies = addBookWindow.getNumOfCopies();
-        String authorList = addBookWindow.getAuthorList();
+        String authorList = addBookWindow.getAuthorDTOList();
         if (isbn.isEmpty() || title.isEmpty() || maxCheckoutLength.isEmpty() || numOfCopies.isEmpty() || authorList.isEmpty()) {
             throw new RuleException("No fields should be empty!");
         }

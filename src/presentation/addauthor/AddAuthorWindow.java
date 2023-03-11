@@ -6,6 +6,8 @@ import presentation.BackButton;
 import presentation.RootFrame;
 import presentation.UIFrame;
 import presentation.addbook.AddBookWindow;
+import presentation.dto.AddressDTO;
+import presentation.dto.AuthorDTO;
 import presentation.validator.RuleException;
 import presentation.validator.ValidatorFactory;
 
@@ -50,20 +52,20 @@ public class AddAuthorWindow implements UIFrame {
                 JOptionPane.showMessageDialog(panel, ex.getMessage());
                 return;
             }
-            Author author = new Author(
+            AuthorDTO authorDTO = new AuthorDTO(
                     credentialsTextField.getText(),
                     biographyTextField.getText(),
                     firstNameTextField.getText(),
                     lastNameTextField.getText(),
-                    new Address(
+                    phoneTextField.getText(),
+                    new AddressDTO(
                             streetTextField.getText(),
                             cityTextField.getText(),
                             stateTextField.getText(),
                             zipTextField.getText()
-                    ),
-                    phoneTextField.getText()
+                    )
             );
-            this.addBookWindow.addAuthor(author);
+            this.addBookWindow.addAuthor(authorDTO);
             RootFrame.getInstance().removePanel(false);
         });
     }

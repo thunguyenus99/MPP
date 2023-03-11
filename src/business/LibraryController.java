@@ -8,6 +8,10 @@ import business.model.ModificationType;
 import data.model.*;
 import data.repository.LibraryRepositoryImpl;
 import presentation.LoggedInUser;
+import presentation.dto.BookDTO;
+import presentation.dto.LibraryMemberDTO;
+import presentation.mapper.BookDTOMapper;
+import presentation.mapper.LibraryMemberDTOMapper;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -40,7 +44,8 @@ public class LibraryController {
         LoggedInUser.set(user);
     }
 
-    public ModificationType addMember(LibraryMember member) {
+    public ModificationType addMember(LibraryMemberDTO memberDTO) {
+        LibraryMember member = new LibraryMemberDTOMapper().map(memberDTO);
         LibraryMember existedMember = repository.getMemberById(member.getMemberId());
         ModificationType status = existedMember == null ? ModificationType.ADD : ModificationType.UPDATE;
         repository.saveMember(member);
@@ -57,7 +62,8 @@ public class LibraryController {
         return book;
     }
 
-    public ModificationType addBook(Book book){
+    public ModificationType addBook(BookDTO bookDTO){
+        Book book = new BookDTOMapper().map(bookDTO);
         Book existedBook = repository.getBookByIsbn(book.getIsbn());
         ModificationType status = existedBook == null ? ModificationType.ADD : ModificationType.UPDATE;
         repository.saveBook(book);

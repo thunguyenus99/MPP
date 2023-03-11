@@ -1,11 +1,11 @@
 package presentation.addmember;
 
 import business.LibraryController;
-import data.model.Address;
-import data.model.LibraryMember;
 import business.model.ModificationType;
 import presentation.RootFrame;
 import presentation.UIFrame;
+import presentation.dto.AddressDTO;
+import presentation.dto.LibraryMemberDTO;
 import presentation.validator.RuleException;
 import presentation.validator.Validator;
 import presentation.validator.ValidatorFactory;
@@ -34,17 +34,6 @@ public class AddMemberWindow implements UIFrame {
         validator = ValidatorFactory.getValidator(this.getClass());
 
         submitBtn.addActionListener(e -> {
-            Address newAddress = new Address(this.streetTxt.getText().trim(),
-                    this.cityTxt.getText().trim(),
-                    this.stateTxt.getText().trim(),
-                    this.zipTxt.getText().trim());
-
-            LibraryMember newMember = new LibraryMember(this.memberIdTxt.getText().trim(),
-                    this.firstNameTxt.getText().trim(),
-                    this.lastNameTxt.getText().trim(),
-                    newAddress,
-                    this.numberTxt.getText().trim()
-            );
             try {
                 validator.validate(this);
             } catch (RuleException ex) {
@@ -52,7 +41,20 @@ public class AddMemberWindow implements UIFrame {
                 JOptionPane.showMessageDialog(root, message);
                 return;
             }
-            ModificationType status = controller.addMember(newMember);
+            ModificationType status = controller.addMember(
+                    new LibraryMemberDTO(
+                            this.memberIdTxt.getText().trim(),
+                            this.firstNameTxt.getText().trim(),
+                            this.lastNameTxt.getText().trim(),
+                            new AddressDTO(
+                                    this.streetTxt.getText().trim(),
+                                    this.cityTxt.getText().trim(),
+                                    this.stateTxt.getText().trim(),
+                                    this.zipTxt.getText().trim()
+                            ),
+                            this.numberTxt.getText().trim()
+                    )
+            );
             if (status == ModificationType.ADD) {
                 messageLabel.setText("Add Member successfully: " + firstNameTxt.getText() + " " + lastNameTxt.getText());
             } else {

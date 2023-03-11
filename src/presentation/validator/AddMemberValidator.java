@@ -8,7 +8,6 @@ public class AddMemberValidator implements Validator {
     @Override
     public void validate(UIFrame frame) throws RuleException {
         AddMemberWindow addMemberWindow = (AddMemberWindow) frame;
-        // TODO
 
         if (addMemberWindow.getMemberIdTxt().getText() == null || addMemberWindow.getMemberIdTxt().getText().trim().isEmpty()) {
             throw new RuleException("Member Id cannot be empty");

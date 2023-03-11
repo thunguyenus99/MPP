@@ -2,12 +2,12 @@ package presentation.addbook;
 
 import business.LibraryController;
 import business.model.ModificationType;
-import data.model.Author;
-import data.model.Book;
 import presentation.BackButton;
 import presentation.RootFrame;
 import presentation.UIFrame;
 import presentation.addauthor.AddAuthorUiPlugin;
+import presentation.dto.AuthorDTO;
+import presentation.dto.BookDTO;
 import presentation.validator.RuleException;
 import presentation.validator.ValidatorFactory;
 
@@ -35,11 +35,11 @@ public class AddBookWindow implements UIFrame {
 
     private final LibraryController controller;
 
-    private final List<Author> authorList;
+    private final List<AuthorDTO> authorDTOList;
 
     public AddBookWindow() {
         controller = LibraryController.getInstance();
-        authorList = new ArrayList<>();
+        authorDTOList = new ArrayList<>();
         setUpListener();
     }
 
@@ -52,14 +52,14 @@ public class AddBookWindow implements UIFrame {
                 JOptionPane.showMessageDialog(panel, ex.getMessage());
                 return;
             }
-            Book book = new Book(
+            BookDTO bookDTO = new BookDTO(
                     isbnTextField.getText(),
                     titleTextField.getText(),
                     Integer.parseInt(maxCheckoutLengthTextField.getText()),
                     Integer.parseInt(numOfCopiesTextField.getText()),
-                    authorList
+                    authorDTOList
             );
-            ModificationType status = controller.addBook(book);
+            ModificationType status = controller.addBook(bookDTO);
             if (status == ModificationType.ADD) {
                 messageLabel.setText("Add Book successfully: " + titleTextField.getText() + " (" + isbnTextField.getText() + ")");
             } else {
@@ -76,6 +76,7 @@ public class AddBookWindow implements UIFrame {
         numOfCopiesTextField.setText("");
         authorListLabel.setText("List of Authors: ");
         messageLabel.setText("");
+        authorDTOList.clear();
     }
 
     @Override
@@ -88,16 +89,18 @@ public class AddBookWindow implements UIFrame {
         return panel;
     }
 
-    public void addAuthor(Author author) {
-        authorList.add(author);
+    public void addAuthor(AuthorDTO authorDTO) {
+        authorDTOList.add(authorDTO);
         updateAuthorListLabel();
     }
 
     private void updateAuthorListLabel() {
         StringBuilder label = new StringBuilder("List of Authors: ");
-        for (int i = 0; i < authorList.size(); i++) {
-            label.append(authorList.get(i));
-            if (i != authorList.size() - 1) {
+        for (int i = 0; i < authorDTOList.size(); i++) {
+            label.append(authorDTOList.get(i).getFirstName())
+                    .append(" ")
+                    .append(authorDTOList.get(i).getLastName());
+            if (i != authorDTOList.size() - 1) {
                 label.append(", ");
             }
         }
@@ -120,7 +123,7 @@ public class AddBookWindow implements UIFrame {
         return numOfCopiesTextField.getText();
     }
 
-    public String getAuthorList() {
+    public String getAuthorDTOList() {
         return authorListLabel.getText();
     }
 }
