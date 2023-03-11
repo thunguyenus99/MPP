@@ -9,7 +9,7 @@ public class AddMemberValidator implements Validator {
     @Override
     public void validate(UIFrame frame) throws RuleException {
         AddMemberWindow window = (AddMemberWindow) frame;
-        String memberId = window.getMemberIdTxt().getText().trim();
+        String memberId = window.getTxtMemberId().getText().trim();
         if (memberId.isEmpty()) {
             throw new RuleException("Member ID must not be empty!");
         }
@@ -17,15 +17,15 @@ public class AddMemberValidator implements Validator {
             throw new RuleException("Member ID invalid!");
         }
 
-        if (!NumberUtils.isNumeric(window.getNumberTxt().getText().trim())) {
+        if (!NumberUtils.isNumeric(window.getTxtNumber().getText().trim())) {
             throw new RuleException("Phone Number invalid!");
         }
 
-        if (window.getFirstNameTxt().getText().trim().isEmpty()) {
+        if (window.getTxtFirstName().getText().trim().isEmpty()) {
             throw new RuleException("First Name must not be empty!");
         }
 
-        if (window.getLastNameTxt().getText().trim().isEmpty()) {
+        if (window.getTxtLastName().getText().trim().isEmpty()) {
             throw new RuleException("Last Name must not be empty!");
         }
     }

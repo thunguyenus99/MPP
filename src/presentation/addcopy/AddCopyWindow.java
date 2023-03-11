@@ -14,10 +14,10 @@ import javax.swing.border.TitledBorder;
 
 public class AddCopyWindow implements UIFrame {
     private JPanel panel;
-    private JTextField isbnTextField;
-    private JButton addCopyButton;
-    private JLabel isbnLabel;
-    private JLabel messageLabel;
+    private JTextField txtIsbn;
+    private JButton btnAddCopy;
+    private JLabel lblIsbn;
+    private JLabel lblMessage;
 
     private final LibraryController controller;
 
@@ -30,11 +30,11 @@ public class AddCopyWindow implements UIFrame {
     }
 
     private void setUpListener() {
-        addCopyButton.addActionListener(e -> {
+        btnAddCopy.addActionListener(e -> {
             try {
                 validator.validate(this);
-                Book book = controller.addBookCopy(this.isbnTextField.getText());
-                this.messageLabel.setText("Add Copy Successfully. Number of Copy: " + book.getBookCopyList().size());
+                Book book = controller.addBookCopy(this.txtIsbn.getText());
+                this.lblMessage.setText("Add Copy Successfully. Number of Copy: " + book.getBookCopyList().size());
             } catch (RuleException | AddBookCopyException ex) {
                 JOptionPane.showMessageDialog(panel, ex.getMessage());
             }
@@ -43,8 +43,8 @@ public class AddCopyWindow implements UIFrame {
 
     @Override
     public void run() {
-        isbnTextField.setText("");
-        messageLabel.setText("");
+        txtIsbn.setText("");
+        lblMessage.setText("");
     }
 
     @Override
@@ -58,6 +58,6 @@ public class AddCopyWindow implements UIFrame {
     }
 
     public String getIsbn() {
-        return isbnTextField.getText();
+        return txtIsbn.getText();
     }
 }
