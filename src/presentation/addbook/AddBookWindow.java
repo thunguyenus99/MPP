@@ -1,10 +1,10 @@
 package presentation.addbook;
 
 import business.LibraryController;
-import business.exception.AddBookException;
 import data.model.Author;
 import data.model.Book;
 import presentation.BackButton;
+import business.model.ModificationType;
 import presentation.RootFrame;
 import presentation.UIFrame;
 import presentation.addauthor.AddAuthorUiPlugin;
@@ -60,25 +60,20 @@ public class AddBookWindow implements UIFrame {
                 JOptionPane.showMessageDialog(panel, ex.getMessage());
                 return;
             }
-            try {
-                Book book = new Book(
-                        isbnTextField.getText(),
-                        titleTextField.getText(),
-                        Integer.parseInt(maxCheckoutLengthTextField.getText()),
-                        Integer.parseInt(numOfCopiesTextField.getText()),
-                        authorList
-                );
-                controller.addBook(book);
+            Book book = new Book(
+                isbnTextField.getText(),
+                titleTextField.getText(),
+                Integer.parseInt(maxCheckoutLengthTextField.getText()),
+                Integer.parseInt(numOfCopiesTextField.getText()),
+                authorList
+            );
+            ModificationType status = controller.addBook(book);
+            if (status == ModificationType.ADD) {
                 messageLabel.setText("Add Book successfully: " + titleTextField.getText() + " (" + isbnTextField.getText() + ")");
-            } catch (AddBookException ex) {
-                JOptionPane.showMessageDialog(panel, "Book exists and get updated.");
-                messageLabel.setText("Update Book successfully: " + titleTextField.getText() + " (" + isbnTextField.getText() + ")");
+            } else {
+                messageLabel.setText("Book exists and get updated successfully: " + titleTextField.getText() + " (" + isbnTextField.getText() + ")");
             }
         });
-    }
-
-    public AddAuthorWindow getAddAuthorWindow() {
-        return addAuthorWindow;
     }
 
     @Override

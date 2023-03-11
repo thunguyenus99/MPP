@@ -1,9 +1,9 @@
 package presentation.addmember;
 
 import business.LibraryController;
-import business.exception.AddMemberException;
 import data.model.Address;
 import data.model.LibraryMember;
+import business.model.ModificationType;
 import presentation.RootFrame;
 import presentation.UIFrame;
 import presentation.validator.RuleException;
@@ -52,12 +52,11 @@ public class AddMemberWindow implements UIFrame {
                 JOptionPane.showMessageDialog(root, message);
                 return;
             }
-            try {
-                controller.addMember(newMember);
+            ModificationType status = controller.addMember(newMember);
+            if (status == ModificationType.ADD) {
                 messageLabel.setText("Add Member successfully: " + firstNameTxt.getText() + " " + lastNameTxt.getText());
-            } catch (AddMemberException ex) {
-                JOptionPane.showMessageDialog(root, "Member exists and get updated.");
-                messageLabel.setText("Update Member successfully: " + firstNameTxt.getText() + " " + lastNameTxt.getText());
+            } else {
+                messageLabel.setText("Member exists and get updated successfully: " + firstNameTxt.getText() + " " + lastNameTxt.getText());
             }
         });
     }
