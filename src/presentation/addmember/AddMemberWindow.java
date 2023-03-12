@@ -2,11 +2,11 @@ package presentation.addmember;
 
 import business.LibraryController;
 import business.model.ModificationType;
-import data.model.Address;
-import data.model.LibraryMember;
 import presentation.RootFrame;
 import presentation.UIFrame;
 import presentation.UiUtils;
+import business.dto.AddressDTO;
+import business.dto.LibraryMemberDTO;
 import presentation.validator.RuleException;
 import presentation.validator.Validator;
 import presentation.validator.ValidatorFactory;
@@ -35,25 +35,26 @@ public class AddMemberWindow implements UIFrame {
         validator = ValidatorFactory.getValidator(this.getClass());
 
         btnSubmit.addActionListener(e -> {
-            Address newAddress = new Address(this.txtStreet.getText().trim(),
-                    this.txtCity.getText().trim(),
-                    this.txtState.getText().trim(),
-                    this.txtZip.getText().trim()
-            );
-
-            LibraryMember newMember = new LibraryMember(this.txtMemberId.getText().trim(),
-                    this.txtFirstName.getText().trim(),
-                    this.txtLastName.getText().trim(),
-                    newAddress,
-                    this.txtNumber.getText().trim()
-            );
             try {
                 validator.validate(this);
             } catch (RuleException ex) {
                 JOptionPane.showMessageDialog(root, ex.getMessage());
                 return;
             }
-            ModificationType status = controller.addMember(newMember);
+            ModificationType status = controller.addMember(
+                    new LibraryMemberDTO(
+                            this.txtMemberId.getText().trim(),
+                            this.txtFirstName.getText().trim(),
+                            this.txtLastName.getText().trim(),
+                            new AddressDTO(
+                                    this.txtStreet.getText().trim(),
+                                    this.txtCity.getText().trim(),
+                                    this.txtState.getText().trim(),
+                                    this.txtZip.getText().trim()
+                            ),
+                            this.txtNumber.getText().trim()
+                    )
+            );
             if (status == ModificationType.ADD) {
                 lblMessage.setText("Add Member successfully: " + txtFirstName.getText() + " " + txtLastName.getText());
             } else {

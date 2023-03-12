@@ -2,7 +2,7 @@ package presentation.home;
 
 import data.model.Role;
 import data.model.User;
-import presentation.LoggedInUser;
+import business.LoggedInUser;
 import presentation.RootFrame;
 import presentation.UIFrame;
 import presentation.addbook.AddBookUiPlugin;

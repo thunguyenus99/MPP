@@ -1,12 +1,13 @@
 package presentation.addauthor;
 
 import data.model.Address;
-import data.model.Author;
 import presentation.BackButton;
 import presentation.RootFrame;
 import presentation.UIFrame;
 import presentation.UiUtils;
 import presentation.addbook.AddBookWindow;
+import business.dto.AddressDTO;
+import business.dto.AuthorDTO;
 import presentation.validator.RuleException;
 import presentation.validator.ValidatorFactory;
 
@@ -51,20 +52,20 @@ public class AddAuthorWindow implements UIFrame {
                 JOptionPane.showMessageDialog(panel, ex.getMessage());
                 return;
             }
-            Author author = new Author(
+            AuthorDTO authorDTO = new AuthorDTO(
                     txtCredentials.getText(),
                     txtBiography.getText(),
                     txtFirstName.getText(),
                     txtLastName.getText(),
-                    new Address(
+                    txtPhone.getText(),
+                    new AddressDTO(
                             txtStreet.getText(),
                             txtCity.getText(),
                             txtState.getText(),
                             txtZip.getText()
-                    ),
-                    txtPhone.getText()
+                    )
             );
-            this.addBookWindow.addAuthor(author);
+            this.addBookWindow.addAuthor(authorDTO);
             RootFrame.getInstance().removePanel(false);
         });
     }
